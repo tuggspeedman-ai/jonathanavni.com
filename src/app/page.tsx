@@ -4,6 +4,7 @@ import { Hero } from "@/components/home/Hero";
 import { About } from "@/components/home/About";
 import { ProjectsTeaser } from "@/components/home/ProjectsTeaser";
 import { BlogTeaser } from "@/components/home/BlogTeaser";
+import { getAllPosts } from "@/lib/mdx";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -27,6 +28,8 @@ const jsonLd = {
 };
 
 export default function Home() {
+  const posts = getAllPosts().slice(0, 3);
+
   return (
     <>
       <script
@@ -38,7 +41,7 @@ export default function Home() {
         <Hero />
         <About />
         <ProjectsTeaser />
-        <BlogTeaser />
+        <BlogTeaser posts={posts} />
       </main>
       <Footer />
     </>

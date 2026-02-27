@@ -15,7 +15,7 @@ export function ProjectsTeaser() {
   return (
     <section id="projects" className="py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionHeading>What I&apos;ve Built</SectionHeading>
+        <SectionHeading>Selected Projects</SectionHeading>
 
         <div className="grid gap-6">
           {projects.map((project, i) => (
