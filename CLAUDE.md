@@ -39,12 +39,13 @@ A premium personal website for Jonathan Avni, built with Next.js 15, Tailwind CS
 
 ## Tech Stack
 
-- Next.js 15 (App Router), React 19, TypeScript
+- Next.js 16 (App Router), React 19, TypeScript
 - Tailwind CSS v4 + CSS custom properties (no component libraries)
-- Framer Motion v11 for animations
-- MDX for blog posts (`@next/mdx` + `gray-matter` + `rehype-pretty-code`)
+- Framer Motion for animations
+- MDX for blog posts (`gray-matter` for frontmatter)
 - lucide-react for icons
 - Fully static rendering (SSG), deployed on Vercel
+- Production URL: https://personal-website-eight-rose-83.vercel.app (custom domain pending)
 
 ## Project Structure
 
