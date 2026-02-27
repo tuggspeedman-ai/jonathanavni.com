@@ -132,7 +132,11 @@ export const projects: Project[] = [
     links: {
       github: "https://github.com/tuggspeedman-ai/pagepiper",
     },
-    screenshots: [],
+    screenshots: [
+      "/images/projects/pagepiper/screenshot-1-store.png",
+      "/images/projects/pagepiper/screenshot-2-store.png",
+      "/images/projects/pagepiper/screenshot-3-store.png",
+    ],
     featured: false,
     order: 4,
   },
