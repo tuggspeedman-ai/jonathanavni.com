@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { formatDate } from "@/lib/utils";
 import type { BlogPost } from "@/types";
 
@@ -45,7 +47,7 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
         </div>
       </motion.div>
 
-      {/* Content — rendered as simple text for now, MDX rendering can be added later */}
+      {/* Content */}
       <motion.article
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -61,37 +63,9 @@ export function BlogPostClient({ post }: BlogPostClientProps) {
           prose-li:text-text-secondary
           prose-hr:border-border"
       >
-        {/* Simple markdown rendering — each paragraph */}
-        {post.content.split("\n\n").map((block, i) => {
-          if (block.startsWith("# ")) {
-            return (
-              <h2 key={i} className="text-2xl font-serif text-text-primary mt-10 mb-4">
-                {block.replace(/^#+ /, "")}
-              </h2>
-            );
-          }
-          if (block.startsWith("## ")) {
-            return (
-              <h3 key={i} className="text-xl font-serif text-text-primary mt-8 mb-3">
-                {block.replace(/^#+ /, "")}
-              </h3>
-            );
-          }
-          if (block.startsWith("- ") || block.startsWith("* ")) {
-            return (
-              <ul key={i} className="space-y-1 mb-4">
-                {block.split("\n").map((line, j) => (
-                  <li key={j}>{line.replace(/^[-*] /, "")}</li>
-                ))}
-              </ul>
-            );
-          }
-          return (
-            <p key={i} className="mb-4">
-              {block}
-            </p>
-          );
-        })}
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {post.content}
+        </ReactMarkdown>
       </motion.article>
     </div>
   );

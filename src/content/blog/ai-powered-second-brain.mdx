@@ -1,0 +1,125 @@
+---
+title: "My Personalized AI-Powered Second Brain"
+date: "2026-02-27"
+excerpt: "How I built a personalized knowledge management system using Claude Code and Obsidian — with custom slash commands, session hooks, semantic search, and a daily-to-weekly processing pipeline."
+tags: ["AI", "Claude Code", "Obsidian", "productivity", "knowledge-management"]
+---
+
+After reading and hearing a lot about people building personal knowledge bases using Claude Code and Obsidian, I started trying it myself. After several iterations I've landed on a system which truly has been a game changer for me in productivity and efficiency. I wanted to share how my system works and what I've learned building it, in case others find it helpful.
+
+## The Setup in One Sentence
+
+Claude Code runs inside my Obsidian vault, guided by a detailed instruction file (`CLAUDE.md`), with custom slash commands, auto-triggered skills, session hooks, and a local semantic search engine - all orchestrated to make AI a native participant in my knowledge management workflow.
+
+## Session Hooks
+
+Three `SessionStart` hooks fire before every session:
+
+1. **Vault tree.** `tree` outputs the folder structure so Claude has spatial awareness of the vault from the start.
+2. **Obsidian CLI detection.** Checks if the Obsidian app is running. If yes, Claude uses the CLI for backlinks, graph queries, and property manipulation. If not, it falls back to file I/O.
+3. **Search index refresh.** [qmd](https://github.com/tobi/qmd) re-indexes changed files and runs vector embeddings, so keyword and semantic search are both current.
+
+This means every session starts warm. Claude knows the vault layout, knows what tools are available, and can search immediately.
+
+## What's in the CLAUDE.md
+
+My `CLAUDE.md` is around 500 lines. It covers:
+
+- **Vault structure and naming conventions** — folder purposes, file prefixes, kebab-case rules
+- **Frontmatter schema** — required fields (`created`, `updated`, `tags`, `status`), tag taxonomy
+- **Workflows** — step-by-step processes for creating notes, capturing research, processing PDFs, daily note capture
+- **Domain glossary** — key terms and their definitions, with pointers to atomic concept notes in `Topics/`
+- **Search hierarchy** — when to use qmd keyword search vs. semantic search vs. Obsidian CLI vs. grep
+- **Guardrails** — archive don't delete, search before creating, link liberally, keep notes atomic
+
+It's a living document. When I add a workflow or change a convention, I update the file and every future session picks it up.
+
+## Slash Commands
+
+These are markdown files in `.claude/commands/` that encode multi-step workflows:
+
+**`/pdf`** — Reads a PDF, creates a structured companion note with key takeaways, summary, concept wikilinks, and an `![[embedded]]` reference to the source file. Handles OCR and table extraction when needed.
+
+**`/add-to-daily-note`** — Appends a timestamped conversation summary to `Notes/daily-notes/YYYY-MM-DD.md`. Flags potential entities that might warrant their own notes (`→ potential: [[concept-name]]`) without creating them yet.
+
+**`/weekly-synthesis`** — Processes accumulated daily notes: extracts flagged entities into `Topics/` or `Research/Companies/`, updates existing notes with new context, generates a structured synthesis, and archives the processed dailies.
+
+**`/research-assistant`** — Multi-strategy vault search (full-text, backlinks, outgoing links) followed by a synthesis of existing knowledge, themes, contradictions, and gaps.
+
+**`/thinking-partner`** — Puts Claude in Socratic mode. It reads relevant vault content, then leads with questions instead of answers — surfacing assumptions, connecting ideas across notes, and tracking insights.
+
+**`/vault-health`** — Audits broken wikilinks, orphan notes, dead-end notes, tag inconsistencies, and missing frontmatter. Outputs a prioritized report.
+
+**`/de-ai-ify`** — Rewrites a file to strip AI-generated patterns — hedge phrases, corporate buzzwords, mechanical parallel structures. Outputs a cleaned version with a changelog.
+
+## Auto-Invoked Skills
+
+Skills in `.claude/skills/` trigger automatically based on task context:
+
+- **obsidian-markdown** — Enforces Obsidian-flavored syntax (wikilinks, callouts, embeds, frontmatter formatting) whenever working with `.md` files
+- **pdf-to-note** — Activates the full PDF-to-note template and linking conventions when processing documents
+- **update-file-tags** — Checks naming conventions, applies tags from the taxonomy, and validates frontmatter when adding or editing notes
+- **qmd** — Routes search queries to the appropriate mode: keyword for exact terms, semantic for fuzzy/conceptual matches, hybrid when quality matters most
+
+These are just markdown files with trigger descriptions. Claude matches them to the current task and applies the relevant ones automatically.
+
+## The Daily → Weekly Pipeline
+
+This is the workflow that made the biggest difference for me, because it addresses the core tension in knowledge management: capture needs to be fast, but organization needs to be thorough.
+
+**Daily capture** (`/add-to-daily-note`): 3-5 bullet summary with timestamps. Flags potential entities but doesn't create them. Takes seconds. Low friction means I actually do it consistently.
+
+**Weekly extraction** (`/weekly-synthesis`):
+1. Reads all active daily notes
+2. Identifies recurring themes
+3. Extracts flagged entities into atomic notes (concepts → `Topics/`, companies → `Research/Companies/`)
+4. Appends dated updates to existing entity notes
+5. Creates a synthesis note with themes, insights, progress, and open questions
+6. Archives processed dailies
+
+The design principle: **flag now, process later.** Daily capture doesn't try to organize. Weekly synthesis has a full week of context to work with. Separating these concerns is what keeps the system sustainable.
+
+## Search: Progressive Disclosure
+
+Rather than stuffing the full vault into context, the system uses layered search:
+
+1. **File tree** — The session hook already loaded the vault structure. Filenames and folder paths are often enough to locate what's needed.
+2. **qmd** — BM25 keyword search for known terms, vector semantic search for conceptual queries, hybrid mode for best quality. Runs locally with small open-source models.
+3. **Obsidian CLI** — Graph-aware queries: backlinks, outgoing links, unresolved wikilinks.
+4. **Full read** — Only after the above confirm a note is relevant.
+
+This keeps context usage low and responses fast.
+
+## External Research: Web Browsing and X
+
+The vault isn't limited to local files. I've integrated two tools that let Claude pull in external content during research sessions:
+
+**Playwright (via MCP)** — Claude can navigate websites, take screenshots, and extract content from web pages directly within a session. When I'm researching a company or a new protocol, Claude browses their site, pulls relevant information, and writes it up as a vault note — all without me leaving the conversation.
+
+**xurl (X API CLI)** — [xurl](https://github.com/xdevplatform/xurl) gives Claude access to the X API from the command line. I use this to search for discussions around specific topics, pull recent posts from key accounts, and capture relevant threads. The results feed into research notes the same way any other source would.
+
+Both are enabled through permissions in `settings.local.json` — Playwright as an MCP server, xurl as an allowed bash command. No wrapper skills needed; Claude uses them as part of its normal research workflow when the task calls for it.
+
+## What I've Learned
+
+**The CLAUDE.md is the highest-leverage artifact.** Everything downstream — command behavior, skill quality, search routing — depends on how well you've documented your environment. Invest the time here.
+
+**Commands and skills compound.** Each one encodes decisions I'd otherwise make manually every time. `/weekly-synthesis` alone replaced what used to be a tedious hour of note grooming.
+
+**Separate capture from organization.** Trying to perfectly file every note in real time is a recipe for not taking notes at all. Batch processing weekly is the sustainable middle ground.
+
+**Hooks eliminate cold starts.** The difference between "Claude, here's my vault structure..." every session and having it loaded automatically is significant over time.
+
+**The vault gets more useful as it grows.** Every note Claude creates becomes context for future sessions. Every extracted entity becomes a node other notes can link to. The system builds on itself.
+
+## The Stack
+
+- [Obsidian](https://obsidian.md) — Local-first markdown knowledge base
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) — Anthropic's agentic coding CLI
+- [Obsidian CLI](https://help.obsidian.md/cli) — Terminal access to the running Obsidian instance
+- [qmd](https://github.com/tobi/qmd) — Local hybrid search (BM25 + vector embeddings)
+- [Playwright](https://playwright.dev/) — Browser automation for web research (via MCP server)
+- [xurl](https://github.com/xdevplatform/xurl) — X API CLI for searching and pulling posts
+- Custom commands & skills — Markdown prompt files in `.claude/commands/` and `.claude/skills/`
+
+Everything runs locally. No cloud dependencies for the vault or search.
