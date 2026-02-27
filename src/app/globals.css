@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+:root {
+  /* Background */
+  --bg-primary: #0A0A0B;
+  --bg-secondary: #111113;
+  --bg-tertiary: #1A1A1D;
+  --surface-glass: rgba(255, 255, 255, 0.03);
+
+  /* Borders */
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
+
+  /* Text */
+  --text-primary: #EDEDEF;
+  --text-secondary: #8A8A8E;
+  --text-tertiary: #5A5A5E;
+
+  /* Accent — warm amber */
+  --accent: #E8A849;
+  --accent-hover: #D4793A;
+  --accent-glow: rgba(232, 168, 73, 0.15);
+
+  /* Status */
+  --success: #3ECF8E;
+}
+
+@theme inline {
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-tertiary: var(--bg-tertiary);
+  --color-surface-glass: var(--surface-glass);
+  --color-border: var(--border);
+  --color-border-hover: var(--border-hover);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-glow: var(--accent-glow);
+  --color-success: var(--success);
+  --font-serif: var(--font-instrument-serif);
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+}
+
+/* Noise overlay texture */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background: var(--accent);
+  color: var(--bg-primary);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-hover);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
