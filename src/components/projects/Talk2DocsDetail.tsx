@@ -92,7 +92,7 @@ export function Talk2DocsDetail() {
         <h2 className="text-2xl font-serif text-text-primary mb-8">
           By the Numbers
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {talk2docsStats.map((stat, i) => (
             <motion.div
               key={stat.label}

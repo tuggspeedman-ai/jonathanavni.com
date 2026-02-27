@@ -73,15 +73,13 @@ export const projects: Project[] = [
     tagline:
       "A full-stack RAG platform for chatting with PDFs, URLs, and podcasts",
     description:
-      "A production SaaS platform with a complete RAG system built from scratch — custom chunking, hybrid retrieval, query classification, multi-document synthesis, and citation validation. ~52,500 lines of TypeScript across 363 files, built solo with Claude Code over 10 months.",
+      "An AI-powered document intelligence platform with a complete RAG system built from scratch — custom chunking, hybrid retrieval, query classification, multi-document synthesis, and citation validation. Built with Next.js, Supabase, Stripe, and Clerk, deployed on Vercel and Railway.",
     status: "sunset",
     stats: [
-      { label: "Lines of Code", value: "52,500" },
       { label: "React Components", value: "105" },
       { label: "API Endpoints", value: "38" },
       { label: "Database Tables", value: "16" },
-      { label: "Commits", value: "222" },
-      { label: "Developer", value: "1" },
+      { label: "Server Actions", value: "200+" },
     ],
     techStack: [
       "Next.js 15",
@@ -103,11 +101,6 @@ export const projects: Project[] = [
       "/images/projects/talk2docs/talk2docs-5.png",
       "/images/projects/talk2docs/talk2docs-6.png",
       "/images/projects/talk2docs/talk2docs-7.png",
-      "/images/projects/talk2docs/talk2docs-8.png",
-      "/images/projects/talk2docs/talk2docs-9.png",
-      "/images/projects/talk2docs/talk2docs-10.png",
-      "/images/projects/talk2docs/talk2docs-11.png",
-      "/images/projects/talk2docs/talk2docs-12.png",
     ],
     featured: true,
     order: 3,

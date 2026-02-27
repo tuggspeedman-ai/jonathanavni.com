@@ -1,4 +1,4 @@
-export const talk2docsOverview = `Upload a document — a PDF, a URL, a podcast episode — and Talk2Docs makes it conversational. Ask questions, get answers grounded in your actual content with clickable citations that navigate to the source.`;
+export const talk2docsOverview = `A Next.js app (TypeScript + React) using PostgreSQL (via Supabase) for database operations and vector search, Stripe for payments, and Clerk for auth. Infra runs on Vercel and Railway. Upload a document — a PDF, a URL, a podcast episode — and Talk2Docs makes it conversational. Ask questions and get answers grounded in your actual content, with clickable citations that navigate to the source. Under the hood: a full RAG pipeline built from scratch, including agentic RAG for multi-document chats.`;
 
 export const talk2docsFeatures = [
   {
@@ -62,7 +62,6 @@ export const talk2docsArchitecture = [
 ];
 
 export const talk2docsStats = [
-  { label: "Lines of code", value: "~52,500" },
   { label: "Files", value: "363" },
   { label: "React components", value: "105" },
   { label: "API endpoints", value: "38" },
@@ -71,28 +70,27 @@ export const talk2docsStats = [
   { label: "Background workers", value: "3" },
   { label: "Prompt templates", value: "19" },
   { label: "RAG query types", value: "10" },
-  { label: "Commits", value: "222" },
 ];
 
 export const talk2docsLearnings = [
   {
+    title: "Built to learn",
+    detail:
+      "I was learning about RAG at the time, and my initial motivation was to build a retrieval system from scratch — no LangChain, no LlamaIndex — to really understand every layer of the pipeline.",
+  },
+  {
+    title: "My first full product built with AI",
+    detail:
+      "This was the first end-to-end product I built using AI coding tools. I started with Cursor and tried different models. While building Talk2Docs, both Claude Code and Codex came out — I tried both and landed on Claude Code, which is my primary agentic coding tool today.",
+  },
+  {
     title: "AI accelerates the 80%, you still own the 20%",
     detail:
-      "Claude Code could scaffold components and implement API routes at remarkable speed. But RAG tuning, debugging production OCR failures, and designing the two-tier retrieval system required deep thinking.",
+      "AI tools could scaffold components and implement API routes at remarkable speed. But RAG tuning, debugging production OCR failures, and designing the two-tier retrieval system required deep thinking that no tool could shortcut.",
   },
   {
-    title: "Architecture decisions compound",
+    title: "Shipped, learned, moved on",
     detail:
-      'Early choices like "server actions for everything" and "build RAG from scratch" paid huge dividends later. Adding Sentry tracking was a one-line wrapper. Adding query classification didn\'t require fighting a framework.',
-  },
-  {
-    title: "Solo doesn't mean small",
-    detail:
-      "52,500 lines, 16 database tables, 3 background workers, Stripe billing, Clerk auth, Sentry monitoring. One person, 10 months. The leverage from modern tools is real.",
-  },
-  {
-    title: "Production is a different game",
-    detail:
-      "Getting a demo working is 30% of the effort. The other 70% is OCR jobs that hang, rate limiting, cost caps, webhook idempotency, and graceful degradation.",
+      "Talk2Docs was live for a few months with dozens of users. I learned a lot from building and operating it — then wound it down to focus on what came next.",
   },
 ];

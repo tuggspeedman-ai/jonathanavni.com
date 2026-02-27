@@ -27,12 +27,12 @@ export const metadata: Metadata = {
     template: "%s | Jonathan Avni",
   },
   description:
-    "10 years building developer platforms at Yahoo, Pinterest, Coinbase, and Paxos. Now going deep on AI — training models, building products, and writing about it.",
+    "10+ years building developer platforms and payments infrastructure at Yahoo, Pinterest, Coinbase, and Paxos. Now going deep on AI — training models, building products, and writing about it.",
   metadataBase: new URL("https://jonathanavni.com"),
   openGraph: {
     title: "Jonathan Avni — Product Leader & AI Builder",
     description:
-      "10 years building developer platforms at Yahoo, Pinterest, Coinbase, and Paxos. Now going deep on AI.",
+      "10+ years building developer platforms and payments infrastructure at Yahoo, Pinterest, Coinbase, and Paxos. Now going deep on AI.",
     url: "https://jonathanavni.com",
     siteName: "Jonathan Avni",
     locale: "en_US",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Jonathan Avni — Product Leader & AI Builder",
     description:
-      "10 years building developer platforms at Yahoo, Pinterest, Coinbase, and Paxos. Now going deep on AI.",
+      "10+ years building developer platforms and payments infrastructure at Yahoo, Pinterest, Coinbase, and Paxos. Now going deep on AI.",
   },
   robots: {
     index: true,

@@ -12,7 +12,7 @@ const jsonLd = {
   url: "https://jonathanavni.com",
   jobTitle: "Product Leader & AI Builder",
   description:
-    "10 years building developer platforms at Yahoo, Pinterest, Coinbase, and Paxos. Now going deep on AI.",
+    "10+ years building developer platforms and payments infrastructure at Yahoo, Pinterest, Coinbase, and Paxos. Now going deep on AI.",
   sameAs: [
     "https://github.com/tuggspeedman-ai",
     "https://linkedin.com/in/jonathanavni",

@@ -7,32 +7,32 @@ import type { CareerEntry } from "@/types";
 
 const career: CareerEntry[] = [
   {
-    period: "2013–2015",
+    period: "2012–2015",
     company: "Yahoo",
-    role: "Product Manager, Gemini",
+    role: "Product Manager",
     highlight:
-      "Founding team. Powered monetization across 1B+ MAUs. Grew revenue from launch to $1B+ run-rate.",
+      "Founding team member of Yahoo Gemini, powering monetization across Yahoo properties (over 1B MAUs at the time). Grew revenue from launch to $1B+ run-rate.",
   },
   {
-    period: "2015–2019",
+    period: "2015–2018",
     company: "Pinterest",
     role: "Product Manager, Monetization",
     highlight:
-      "Launched Marketing APIs used by 100+ partners — accounting for 50%+ of 2018 revenue.",
+      "Launched Marketing APIs used by 200+ partners, accounted for 50%+ of 2018 revenue.",
   },
   {
-    period: "2019–2022",
+    period: "2019–2021",
     company: "Coinbase",
-    role: "Senior PM, Platforms",
+    role: "Senior Product Manager, Payments Platforms",
     highlight:
-      "Built shared Payments & Trading infrastructure powering hundreds of billions in annual volume.",
+      "Built payments and trading infrastructure for Coinbase Retail and Enterprise customer-facing products, powering hundreds of billions of dollars in annual transaction volume.",
   },
   {
     period: "2022–2024",
     company: "Paxos",
-    role: "Product Lead",
+    role: "Product Lead, Stablecoins and Banking",
     highlight:
-      "Built and launched PayPal USD stablecoin. Scaled to $3B+ market cap across dozens of integrations.",
+      "Built and launched PayPal USD, a leading fully regulated USD stablecoin, and scaled it to a market cap of over $3B through dozens of distribution partner integrations.",
   },
   {
     period: "2024–Now",
