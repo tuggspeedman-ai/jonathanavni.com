@@ -1,7 +1,7 @@
 ---
 title: "My OpenClaw Setup"
 date: "2026-02-28"
-excerpt: "How I set up OpenClaw as a personal AI assistant on a $20/month VPS — with automated newsletter triage, memory consolidation, and model routing for cost control."
+excerpt: "How I set up OpenClaw as a personal AI assistant on a $20/month VPS — with automated newsletter triage, memory consolidation, and model routing to keep costs down."
 tags: ["AI", "OpenClaw", "automation", "infrastructure"]
 ---
 
@@ -33,7 +33,7 @@ This replaced manual newsletter triage. I review daily and weekly files in Obsid
 
 **Heartbeat (every 60min):** Checks for urgent emails and system health. Returns `HEARTBEAT_OK` when nothing requires attention.
 
-**Memory consolidation (nightly):** Reads the past week of daily logs, distills significant events, updates `MEMORY.md`. Appends changelog to `memory/consolidation-log.md`.
+**Memory consolidation (nightly):** Reads the past week of daily logs, pulls out what mattered, updates `MEMORY.md`. Appends changelog to `memory/consolidation-log.md`.
 
 **Daily notes (nightly):** Reviews session history and token usage. Writes to `~/newsletters/daily-notes/YYYY-MM-DD.md` if there was meaningful activity.
 
@@ -62,7 +62,7 @@ Initially I was using Opus 4.6 everywhere, trending toward $150-200/month. The c
 
 ## Security
 
-**VPS isolation:** Process-level isolation with a controlled network perimeter. The gateway listens only on loopback and Tailscale—no public ports.
+**VPS isolation:** No public ports. The gateway listens only on loopback and Tailscale.
 
 **Read-only integrations:** X integration uses a read-only Bearer token (no write scopes). Email uses a dedicated Fastmail account, not my primary inbox.
 
@@ -74,14 +74,14 @@ Initially I was using Opus 4.6 everywhere, trending toward $150-200/month. The c
 
 ## Lessons
 
-**Isolated cron sessions enable reliable automation.** Background tasks run separately with `delivery: none`, keeping the main thread clean.
+**Running cron in isolated sessions keeps things reliable.** Background tasks run separately with `delivery: none`, keeping the main thread clean.
 
 **Model routing pays for itself.** Switching defaults from Opus to Sonnet eliminated 85% of costs.
 
 **Local search beats RAG for personal workflows.** `qmd` with BM25 is instant and deterministic. No API calls, no rate limits.
 
-**The newsletter pipeline is high-value automation.** This one workflow justified the setup. I went from ignoring a lot of these newsletters to reviewing synthesized takeaways weekly.
+**The newsletter pipeline justified the setup on its own.** I went from ignoring a lot of these newsletters to reviewing synthesized takeaways weekly.
 
-**Memory consolidation works.** Daily logs are raw; `MEMORY.md` is curated. The nightly job distills logs into durable context.
+**Memory consolidation works.** Daily logs are raw; `MEMORY.md` is curated. The nightly job turns logs into context that sticks around.
 
 **A VPS feels like the right primitive, at least for now.** Persistent process, local filesystem, shell access, systemd integration. OpenClaw isn't stateless request-response—it's a long-running agent.
