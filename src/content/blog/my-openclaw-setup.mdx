@@ -1,0 +1,87 @@
+---
+title: "My OpenClaw Setup"
+date: "2026-02-28"
+excerpt: "How I set up OpenClaw as a personal AI assistant on a $20/month VPS — with automated newsletter triage, memory consolidation, and model routing for cost control."
+tags: ["AI", "OpenClaw", "automation", "infrastructure"]
+---
+
+After several weeks running OpenClaw as my personal AI assistant, I've landed on a setup that I'm using daily. I'm still experimenting but wanted to share what I've been doing in case others find it helpful.
+
+## Infrastructure
+
+**Host:** Digital Ocean VPS (4GB Memory / 80GB Disk / SFO3 - Ubuntu 24.04 LTS x64) — ~$20/month
+
+**Runtime:** Node.js 24, systemd service
+
+**Interface:** Telegram (pairing-based access control)
+
+**Network:** Loopback + Tailscale (no public ports)
+
+**Tools:** Fastmail (JMAP API), xurl (X API CLI), qmd (local markdown search)
+
+All credentials live in `~/.openclaw/.env`. The gateway binds only to loopback and Tailscale for secure remote access.
+
+Single 4GB instance. No Kubernetes, no Docker. Systemd and bash scripts.
+
+## Newsletter Pipeline
+
+This is my main use case. An isolated cron job runs at 7am CT daily, checks Fastmail for newsletters received in the last 24 hours, extracts source/date/key takeaways, and appends to the current week's file. Weekly rollover happens Monday at 1pm CT.
+
+This replaced manual newsletter triage. I review daily and weekly files in Obsidian instead of dozens of unread emails. Files are searchable with `qmd` and version-controlled.
+
+## Automation
+
+**Heartbeat (every 60min):** Checks for urgent emails and system health. Returns `HEARTBEAT_OK` when nothing requires attention.
+
+**Memory consolidation (nightly):** Reads the past week of daily logs, distills significant events, updates `MEMORY.md`. Appends changelog to `memory/consolidation-log.md`.
+
+**Daily notes (nightly):** Reviews session history and token usage. Writes to `~/newsletters/daily-notes/YYYY-MM-DD.md` if there was meaningful activity.
+
+**Git backup (nightly):** Auto-commits and pushes workspace changes to a private GitHub repository. Runs after memory consolidation to capture the previous day's work.
+
+All scheduled jobs use isolated sessions with `delivery: none`—they don't pollute the main conversation thread.
+
+## Cost Optimization
+
+Initially I was using Opus 4.6 everywhere, trending toward $150-200/month. The current setup:
+
+**Model routing:**
+
+- Main session: Sonnet 4.5
+- Heartbeat: Haiku 3.5
+- Cron jobs: Sonnet 4.5
+
+**Context pruning:**
+
+- `cache-ttl` mode with 10min TTL
+- Last 3 assistant messages
+- 50-message history limit
+- Workspace file trimming: ~2k tokens saved per turn
+
+**Result:** 85-90% cost reduction. I plan to experiment with OpenRouter for additional cost efficiency but currently it seems we're around $20/month which seems reasonable.
+
+## Security
+
+**VPS isolation:** Process-level isolation with a controlled network perimeter. The gateway listens only on loopback and Tailscale—no public ports.
+
+**Read-only integrations:** X integration uses a read-only Bearer token (no write scopes). Email uses a dedicated Fastmail account, not my primary inbox.
+
+**Isolated sessions:** Scheduled jobs run in isolated sessions and can't access main session state or trigger actions without explicit delivery configuration.
+
+**Credential separation:** All API tokens live in `~/.openclaw/.env`, not config files. All are git-ignored by default.
+
+**Gated writes:** Email sending and posting require explicit confirmation. The agent can read widely; writes are gated.
+
+## Lessons
+
+**Isolated cron sessions enable reliable automation.** Background tasks run separately with `delivery: none`, keeping the main thread clean.
+
+**Model routing pays for itself.** Switching defaults from Opus to Sonnet eliminated 85% of costs.
+
+**Local search beats RAG for personal workflows.** `qmd` with BM25 is instant and deterministic. No API calls, no rate limits.
+
+**The newsletter pipeline is high-value automation.** This one workflow justified the setup. I went from ignoring a lot of these newsletters to reviewing synthesized takeaways weekly.
+
+**Memory consolidation works.** Daily logs are raw; `MEMORY.md` is curated. The nightly job distills logs into durable context.
+
+**A VPS feels like the right primitive, at least for now.** Persistent process, local filesystem, shell access, systemd integration. OpenClaw isn't stateless request-response—it's a long-running agent.
