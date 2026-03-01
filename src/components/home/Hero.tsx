@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { AnimatedText } from "@/components/ui/AnimatedText";
@@ -28,60 +29,91 @@ export function Hero() {
       </div>
 
       <div className="relative mx-auto max-w-6xl px-6 py-32 md:py-0 w-full">
-        <div className="max-w-3xl">
-          {/* Name */}
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.1] mb-6">
-            <AnimatedText text="Jonathan Avni" delay={0.2} />
-          </h1>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-12 md:gap-16">
+          {/* Text */}
+          <div className="max-w-3xl">
+            {/* Name */}
+            <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.1] mb-6">
+              <AnimatedText text="Jonathan Avni" delay={0.2} />
+            </h1>
 
-          {/* Title */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            {/* Title */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 0.9,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="text-xl md:text-2xl text-accent font-mono tracking-wide mb-8"
+            >
+              Product Leader. AI Builder.
+            </motion.p>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 1.1,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="text-lg md:text-xl text-text-secondary leading-relaxed max-w-2xl mb-12"
+            >
+              10+ years building developer platforms and payments infrastructure
+              at Yahoo, Pinterest, Coinbase, and Paxos. Now going deep on AI —
+              training models, building products, and writing about it.
+            </motion.p>
+
+            {/* CTA */}
+            <motion.a
+              href="#projects"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 1.3,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="inline-flex items-center gap-2 text-text-secondary hover:text-accent transition-colors group"
+            >
+              <span className="text-sm tracking-wide">See what I&apos;m building</span>
+              <ArrowDown
+                size={16}
+                className="group-hover:translate-y-1 transition-transform"
+              />
+            </motion.a>
+          </div>
+
+          {/* Profile illustration */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{
-              duration: 0.6,
-              delay: 0.9,
+              duration: 0.8,
+              delay: 0.6,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="text-xl md:text-2xl text-accent font-mono tracking-wide mb-8"
+            className="shrink-0 self-center md:self-auto"
           >
-            Product Leader. AI Builder.
-          </motion.p>
-
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.6,
-              delay: 1.1,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className="text-lg md:text-xl text-text-secondary leading-relaxed max-w-2xl mb-12"
-          >
-            10+ years building developer platforms and payments infrastructure
-            at Yahoo, Pinterest, Coinbase, and Paxos. Now going deep on AI —
-            training models, building products, and writing about it.
-          </motion.p>
-
-          {/* CTA */}
-          <motion.a
-            href="#projects"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.6,
-              delay: 1.3,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className="inline-flex items-center gap-2 text-text-secondary hover:text-accent transition-colors group"
-          >
-            <span className="text-sm tracking-wide">See what I&apos;m building</span>
-            <ArrowDown
-              size={16}
-              className="group-hover:translate-y-1 transition-transform"
-            />
-          </motion.a>
+            <div
+              className="w-44 h-44 md:w-64 md:h-64 rounded-full overflow-hidden ring-2 ring-accent/20"
+              style={{
+                boxShadow: "0 0 40px var(--accent-glow), 0 0 80px var(--accent-glow)",
+              }}
+            >
+              <Image
+                src="/images/profile.png"
+                alt="Jonathan Avni"
+                width={256}
+                height={256}
+                className="w-full h-full object-cover"
+                priority
+              />
+            </div>
+          </motion.div>
         </div>
       </div>
 
