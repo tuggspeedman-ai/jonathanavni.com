@@ -5,11 +5,11 @@ excerpt: "How I built a personalized knowledge management system using Claude Co
 tags: ["AI", "Claude Code", "Obsidian", "productivity", "knowledge-management"]
 ---
 
-After reading and hearing a lot about people building personal knowledge bases using Claude Code and Obsidian, I started trying it myself. After several iterations I've landed on a system which truly has been a game changer for me in productivity and efficiency. I wanted to share how my system works and what I've learned building it, in case others find it helpful.
+After reading and hearing a lot about people building personal knowledge bases using Claude Code and Obsidian, I started trying it myself. After several iterations I've landed on a system I use every day — it's changed how I capture, organize, and retrieve information. I wanted to share how it works and what I've learned building it, in case others find it helpful.
 
 ## The Setup in One Sentence
 
-Claude Code runs inside my Obsidian vault, guided by a detailed instruction file (`CLAUDE.md`), with custom slash commands, auto-triggered skills, session hooks, and a local semantic search engine - all orchestrated to make AI a native participant in my knowledge management workflow.
+Claude Code runs inside my Obsidian vault, guided by a detailed instruction file (`CLAUDE.md`), with custom slash commands, auto-triggered skills, session hooks, and a local semantic search engine — so Claude works directly with my notes instead of me copy-pasting context into it.
 
 ## Session Hooks
 
@@ -102,7 +102,7 @@ Both are enabled through permissions in `settings.local.json` — Playwright as 
 
 ## What I've Learned
 
-**The CLAUDE.md is the highest-leverage artifact.** Everything downstream — command behavior, skill quality, search routing — depends on how well you've documented your environment. Invest the time here.
+**The CLAUDE.md matters most.** Everything downstream — command behavior, skill quality, search routing — depends on how well you've documented your environment. Invest the time here.
 
 **Commands and skills compound.** Each one encodes decisions I'd otherwise make manually every time. `/weekly-synthesis` alone replaced what used to be a tedious hour of note grooming.
 

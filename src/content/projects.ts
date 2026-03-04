@@ -6,7 +6,7 @@ export const projects: Project[] = [
     name: "TinyChat",
     tagline: "A 561M-parameter LLM trained from scratch for ~$95",
     description:
-      "A complete end-to-end language model built from the ground up — custom BPE tokenizer, GPT architecture with RoPE and Multi-Query Attention, trained on ~38B tokens from FineWeb-EDU, then fine-tuned for conversation. Deployed on Modal serverless GPU with a Next.js frontend.",
+      "A language model built from scratch — custom BPE tokenizer, GPT architecture with RoPE and Multi-Query Attention, trained on ~38B tokens from FineWeb-EDU, then fine-tuned for conversation. Deployed on Modal serverless GPU with a Next.js frontend.",
     status: "live",
     stats: [
       { label: "Parameters", value: "561M" },
@@ -38,7 +38,7 @@ export const projects: Project[] = [
     name: "TinyBrain",
     tagline: "An AI that earns and spends money autonomously via x402",
     description:
-      "An AI inference service built on top of TinyChat that charges users $0.01/query via the x402 payment protocol. Routes complex queries to DeepSeek R1 for ~$0.001, pocketing the difference. Features intelligent complexity classification, a \"bar tab\" payment mode with stateless HMAC-signed sessions, and full wallet integration on Base mainnet.",
+      "An inference service built on top of TinyChat that charges $0.01/query via the x402 payment protocol. Routes complex queries to DeepSeek R1 for ~$0.001, pocketing the difference. Includes complexity classification, a \"bar tab\" payment mode with stateless HMAC-signed sessions, and wallet integration on Base mainnet.",
     status: "live",
     stats: [
       { label: "Price per Query", value: "$0.01" },
@@ -73,7 +73,7 @@ export const projects: Project[] = [
     tagline:
       "A full-stack RAG platform for chatting with PDFs, URLs, and podcasts",
     description:
-      "An AI-powered document intelligence platform with a complete RAG system built from scratch — custom chunking, hybrid retrieval, query classification, multi-document synthesis, and citation validation. Built with Next.js, Supabase, Stripe, and Clerk, deployed on Vercel and Railway.",
+      "A RAG platform for chatting with your documents — custom chunking, hybrid retrieval, query classification, multi-document synthesis, and citation validation. Built with Next.js, Supabase, Stripe, and Clerk, deployed on Vercel and Railway.",
     status: "sunset",
     stats: [
       { label: "React Components", value: "105" },
@@ -110,7 +110,7 @@ export const projects: Project[] = [
     name: "PagePiper",
     tagline: "Chrome extension that converts web pages to clean markdown",
     description:
-      "A Chrome extension that clips web pages or selections to clean, well-formatted markdown and copies to clipboard. Uses Mozilla's Readability.js for content extraction and Turndown.js for HTML-to-markdown conversion. Supports keyboard shortcuts, context menus, preview before copy, and smart cleanup of ads and trackers.",
+      "A Chrome extension that clips web pages or selections to clean markdown and copies to clipboard. Uses Mozilla's Readability.js for content extraction and Turndown.js for HTML-to-markdown conversion. Supports keyboard shortcuts, context menus, preview before copy, and automatic cleanup of ads and trackers.",
     status: "live",
     stats: [
       { label: "Format", value: "Chrome Extension" },

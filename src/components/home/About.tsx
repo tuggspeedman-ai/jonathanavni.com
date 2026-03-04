@@ -39,7 +39,7 @@ const career: CareerEntry[] = [
     company: "Independent",
     role: "AI Builder",
     highlight:
-      "Training LLMs from scratch. Building AI products. Shipping with Claude Code.",
+      "Went deep on AI - courses, workshops, and building. Trained LLMs from scratch, built a RAG platform, and shipped agentic products to paying users.",
     isCurrent: true,
   },
 ];
@@ -110,8 +110,8 @@ export function About() {
           className="mt-12 text-text-secondary italic leading-relaxed max-w-2xl"
         >
           A common thread: I&apos;ve always chased the most interesting
-          technology of the moment — ads marketplaces, social APIs, crypto
-          protocols, stablecoins — and now AI.
+          technology of the moment - ads marketplaces, social APIs, crypto
+          protocols, stablecoins - and now AI.
         </motion.p>
       </div>
     </section>

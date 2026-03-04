@@ -1,4 +1,4 @@
-export const talk2docsOverview = `A Next.js app (TypeScript + React) using PostgreSQL (via Supabase) for database operations and vector search, Stripe for payments, and Clerk for auth. Infra runs on Vercel and Railway. Upload a document — a PDF, a URL, a podcast episode — and Talk2Docs makes it conversational. Ask questions and get answers grounded in your actual content, with clickable citations that navigate to the source. Under the hood: a full RAG pipeline built from scratch, including agentic RAG for multi-document chats.`;
+export const talk2docsOverview = `A Next.js app (TypeScript + React) using PostgreSQL (via Supabase) for database operations and vector search, Stripe for payments, and Clerk for auth. Infra runs on Vercel and Railway. Upload a document — a PDF, a URL, a podcast episode — and Talk2Docs lets you chat with it. Ask questions and get answers grounded in your actual content, with clickable citations that jump to the source. The RAG pipeline is built from scratch, including agentic RAG for multi-document chats.`;
 
 export const talk2docsFeatures = [
   {
@@ -14,7 +14,7 @@ export const talk2docsFeatures = [
   {
     title: "Projects",
     description:
-      "Group multiple documents and chat across all of them — the system intelligently routes queries to the right documents first.",
+      "Group multiple documents and chat across all of them — the system routes queries to the most relevant documents first.",
   },
   {
     title: "Custom RAG Pipeline",
@@ -86,7 +86,7 @@ export const talk2docsLearnings = [
   {
     title: "AI accelerates the 80%, you still own the 20%",
     detail:
-      "AI tools could scaffold components and implement API routes at remarkable speed. But RAG tuning, debugging production OCR failures, and designing the two-tier retrieval system required deep thinking that no tool could shortcut.",
+      "AI tools could scaffold components and implement API routes quickly. But RAG tuning, debugging production OCR failures, and designing the two-tier retrieval system still required real problem-solving.",
   },
   {
     title: "Shipped, learned, moved on",
