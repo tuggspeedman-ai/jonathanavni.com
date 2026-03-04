@@ -10,7 +10,7 @@ export const SITE = {
 export const SOCIAL = {
   github: "https://github.com/tuggspeedman-ai",
   linkedin: "https://linkedin.com/in/jonathanavni",
-  x: "https://x.com/jonathanavni",
+  x: "https://x.com/YOAVNI",
 } as const;
 
 export const NAV_ITEMS = [

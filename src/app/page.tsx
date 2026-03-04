@@ -17,7 +17,7 @@ const jsonLd = {
   sameAs: [
     "https://github.com/tuggspeedman-ai",
     "https://linkedin.com/in/jonathanavni",
-    "https://x.com/jonathanavni",
+    "https://x.com/YOAVNI",
   ],
   worksFor: [
     { "@type": "Organization", name: "Yahoo" },
