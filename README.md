@@ -9,6 +9,7 @@ Personal website for Jonathan Avni — Product Leader & AI Builder.
 - **Animation:** Framer Motion
 - **Content:** MDX blog posts, structured project data
 - **Deployment:** Vercel (fully static / SSG)
+- **Live:** [jonathanavni.com](https://jonathanavni.com)
 
 ## Running Locally
 
