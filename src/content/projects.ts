@@ -124,6 +124,7 @@ export const projects: Project[] = [
     ],
     links: {
       github: "https://github.com/tuggspeedman-ai/pagepiper",
+      live: "https://chromewebstore.google.com/detail/PagePiper/bhjfdfjpbchjnjdpfjdjdnjjaoloehlp",
     },
     screenshots: [
       "/images/projects/pagepiper/screenshot-1-store.png",
