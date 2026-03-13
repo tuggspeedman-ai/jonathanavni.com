@@ -31,6 +31,36 @@ export const projects: Project[] = [
       "/images/projects/tinychat/tinychat-wandb.png",
     ],
     featured: true,
+    order: 3,
+  },
+  {
+    slug: "kuchiclaw",
+    name: "KuchiClaw",
+    tagline:
+      "A minimal AI agent framework — ephemeral containers, living file memory, filesystem IPC",
+    description:
+      "A personal AI agent that runs 24/7 on a VPS, talks through Telegram, manages its own memory, sends emails, and runs scheduled tasks autonomously. Built on the Claude Agent SDK with ephemeral Docker containers, living markdown files for memory, filesystem IPC, and a two-tier skills system (shell scripts + MCP).",
+    status: "live",
+    stats: [
+      { label: "Lines of Code", value: "~2,000" },
+      { label: "Source Files", value: "15" },
+      { label: "Languages", value: "TypeScript" },
+      { label: "Runtime", value: "Docker" },
+    ],
+    techStack: [
+      "Claude Agent SDK",
+      "TypeScript",
+      "Docker",
+      "Telegram Bot API",
+      "SQLite",
+      "MCP",
+    ],
+    links: {
+      github: "https://github.com/tuggspeedman-ai/kuchiclaw",
+      blog: "/blog/building-ai-agent-from-scratch",
+    },
+    screenshots: ["/images/projects/kuchiclaw/kuchiclaw-screenshot.png"],
+    featured: true,
     order: 1,
   },
   {
@@ -103,7 +133,7 @@ export const projects: Project[] = [
       "/images/projects/talk2docs/talk2docs-7.png",
     ],
     featured: true,
-    order: 3,
+    order: 5,
   },
   {
     slug: "pagepiper",
