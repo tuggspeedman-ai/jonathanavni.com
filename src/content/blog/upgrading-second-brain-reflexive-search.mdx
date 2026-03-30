@@ -1,0 +1,85 @@
+---
+title: "Upgrading My AI-Powered Second Brain With Reflexive Search"
+date: "2026-03-30"
+excerpt: "Progressive disclosure optimized how Claude searches my Obsidian vault. Reflexive search optimized when. The second turned out to matter more."
+tags: ["AI", "Claude Code", "Obsidian", "productivity", "knowledge-management"]
+---
+
+In a [previous post](/blog/ai-powered-second-brain) I described my setup: Claude Code running inside an Obsidian vault with custom commands, skills, and a local search engine. One section covered how search works in layers - file tree first, then keyword/semantic search, then graph queries, then full reads. I called it progressive disclosure.
+
+It worked well for keeping context usage low. But it had a gap I didn't notice until a few weeks in.
+
+---
+
+## The Problem: Starting From Scratch
+
+Progressive disclosure answers "how should Claude search?" It doesn't answer "when should Claude search?"
+
+The answer was "whenever Claude decides to." And often, it didn't.
+
+I'd have a deep conversation about competitive positioning on Monday. By Wednesday, in a new session, I'd ask a related question and get a generic answer - no reference to Monday's conclusions, no awareness that we'd already worked through the problem. Claude would reason from first principles instead of building on what we'd already figured out.
+
+The vault had the knowledge. The search tools worked. Nothing told Claude to look before responding.
+
+---
+
+## The Fix: A Rule, Not a Feature
+
+The solution was a `.claude/rules/` file - a markdown instruction that loads into every session:
+
+> Before responding to any substantive question about the project, the market, competitive strategy, or protocol comparisons - search the vault first.
+
+No new infrastructure. No embeddings pipeline. No database. Just a behavioral instruction that makes search reflexive instead of optional.
+
+The rule defines what counts as "substantive" (anything that could have come up in a prior session) and what to skip (note formatting, tag updates, mechanical tasks). It specifies a three-step protocol: keyword search first, read the top results, fall back to semantic search if keywords miss. It scans up to ten results by title and relevance score, then reads the most relevant ones in full - with room to pull more if the question needs broader context.
+
+---
+
+## Feeding the Loop: Capturing Insights
+
+A reflexive search is only as good as what it finds. My daily capture command (`/add-to-daily-note`) already flagged potential entities - concepts and companies worth their own notes. But it wasn't capturing the strategic thinking between those entities.
+
+So I added a second flag type: insights.
+
+```
+→ potential: [[company-name]]
+→ insight: We should lead with compliance over reconciliation - that's the felt pain per design partner calls
+```
+
+Entity flags capture *what exists*. Insight flags capture *what we concluded and why*. The weekly synthesis command now promotes both - entities become atomic notes, insights get filed into dedicated strategy and research files. Strategic conclusions become first-class searchable objects in the vault.
+
+---
+
+## What Changed
+
+The difference shows up in the tool calls. When I ask a strategic question, Claude runs search commands before responding - and the answer references specific dates, sources, and prior conclusions.
+
+Before reflexive search:
+> "You could consider supporting both protocols for broader coverage."
+
+After:
+> "Based on our March 13 analysis, we concluded the product should be protocol-agnostic. Protocol A has no facilitator layer - unlike Protocol B where several incumbents fill that role - so there's a bigger gap to fill on the A side. The phasing plan was to integrate via the easier path first, then native support, then the streaming feature."
+
+Same question. Same vault. Same search tools. The only difference is a markdown file that says "search before you answer."
+
+---
+
+## Why Not Just Stuff Everything Into Memory?
+
+Many agent frameworks solve this differently - they write accumulated facts into a `MEMORY.md` or equivalent file that gets loaded into every session. That works up to a point, but it has a ceiling. Memory files grow, context windows fill up, and you start choosing between comprehensive memory and room for actual work. You also have to decide *at write time* what's worth keeping, which means guessing about what future-you will need.
+
+Reflexive search flips that. Instead of pre-loading everything Claude might need, it searches based on the actual question being asked. The vault can hold thousands of notes without any of them costing context tokens until they're relevant. And you don't have to predict what matters - the search surfaces it when the question arrives.
+
+I still use Claude Code's auto-memory for small things like tool quirks and workflow preferences. But for strategic thinking, research conclusions, and project context, search-on-demand beats pre-loaded memory.
+
+---
+
+## The Takeaway
+
+If you're building a knowledge system with an AI assistant, the retrieval infrastructure probably isn't your bottleneck. The bottleneck is whether the assistant knows to use it.
+
+Progressive disclosure optimized *how* Claude searches. Reflexive search optimized *when*. The second turned out to matter more.
+
+---
+
+*This is a follow-up to [My Personalized AI-Powered Second Brain](/blog/ai-powered-second-brain), which covers the full setup: session hooks, CLAUDE.md, slash commands, skills, and the daily-to-weekly capture pipeline.*

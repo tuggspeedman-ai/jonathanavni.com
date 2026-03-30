@@ -1,23 +1,23 @@
 ---
 title: "Building a Personal AI Agent From Scratch: What I Learned About Agent Harnesses"
 date: "2026-03-13"
-excerpt: "I built a minimal AI agent framework that runs 24/7, talks to me through Telegram, and manages its own memory. The biggest lesson: the model is 10% of what makes an agent useful — the other 90% is the harness."
+excerpt: "I built a minimal AI agent framework that runs 24/7, talks to me through Telegram, and manages its own memory. The biggest lesson: the model is 10% of what makes an agent useful - the other 90% is the harness."
 tags: ["AI", "Agents", "Claude Agent SDK", "TypeScript"]
 ---
 
-I've recently built [KuchiClaw](https://github.com/tuggspeedman-ai/kuchiclaw) — a minimal AI agent framework that runs 24/7 on a VPS, talks to me through Telegram, manages its own memory, sends emails, and runs scheduled tasks autonomously. About 2,000 lines of TypeScript, 15 files.
+I've recently built [KuchiClaw](https://github.com/tuggspeedman-ai/kuchiclaw) - a minimal AI agent framework that runs 24/7 on a VPS, talks to me through Telegram, manages its own memory, sends emails, and runs scheduled tasks autonomously. About 2,000 lines of TypeScript, 15 files.
 
-Building it taught me more about how agents actually work than anything I've read or watched. The biggest lesson: the model is maybe 10% of what makes an agent useful. The other 90% is the harness — the scaffolding around the model that gives it tools, memory, context, and a way to interact with the world. This is a big reason why the OpenClaw experience feels magical.
+Building it taught me more about how agents actually work than anything I've read or watched. The biggest lesson: the model is maybe 10% of what makes an agent useful. The other 90% is the harness - the scaffolding around the model that gives it tools, memory, context, and a way to interact with the world. This is a big reason why the OpenClaw experience feels magical.
 
 ---
 
 ## Why Build an Agent From Scratch?
 
-I was already running [OpenClaw](https://openclaw.ai/) — a full-scale open-source AI assistant framework (434K lines, 3,680 files) — as a personal assistant on a VPS. It worked well. But I wanted to understand what was happening under the hood.
+I was already running [OpenClaw](https://openclaw.ai/) - a full-scale open-source AI assistant framework (434K lines, 3,680 files) - as a personal assistant on a VPS. It worked well. But I wanted to understand what was happening under the hood.
 
-Not to replace OpenClaw — to internalize the patterns. How does container isolation actually work? What's the right abstraction for agent memory? How do you give an agent the ability to act in the world without giving it the keys to everything?
+Not to replace OpenClaw - to internalize the patterns. How does container isolation actually work? What's the right abstraction for agent memory? How do you give an agent the ability to act in the world without giving it the keys to everything?
 
-KuchiClaw is the result. It's inspired by [NanoClaw](https://github.com/qwibitai/nanoclaw) (~3,900 lines), a lightweight alternative to OpenClaw, and takes the same core architecture — ephemeral containers, living files, filesystem IPC — and builds the smallest version I could get working in production.
+KuchiClaw is the result. It's inspired by [NanoClaw](https://github.com/qwibitai/nanoclaw) (~3,900 lines), a lightweight alternative to OpenClaw, and takes the same core architecture - ephemeral containers, living files, filesystem IPC - and builds the smallest version I could get working in production.
 
 "Kuchi" was a nickname we gave our son when he was a baby, so the name means "tiny claw" :)
 
@@ -27,16 +27,16 @@ KuchiClaw is the result. It's inspired by [NanoClaw](https://github.com/qwibitai
 
 I recently listened to Harrison Chase (LangChain CEO) [talk about the modern agent stack](https://www.youtube.com/watch?v=rSKh6bVuVZI), and his framing put words to something I'd been experiencing using Claude Code and OpenClaw.
 
-His central argument: **the harness matters more than the model.** Manus, one of the most capable agent systems out there, works well with multiple models. The differentiator isn't which LLM it calls — it's everything around it. The system prompt. The planning tools. The file system. The sub-agents. The memory. The sandbox.
+His central argument: **the harness matters more than the model.** Manus, one of the most capable agent systems out there, works well with multiple models. The differentiator isn't which LLM it calls - it's everything around it. The system prompt. The planning tools. The file system. The sub-agents. The memory. The sandbox.
 
 Chase breaks the harness into four core primitives:
 
-1. **System prompts** — not just a personality blurb, but standard operating procedures. The instructions that shape how the agent thinks and acts.
-2. **Built-in tools** — planning scratchpads, task lists, and other tools baked into the harness. The agent doesn't just call external APIs — it has native capabilities for reasoning and tracking its own work.
-3. **Sub-agents** — isolated context windows for specific tasks. Instead of cramming everything into one context, spin up a fresh agent for a focused job and bring back the results.
-4. **File systems** — the agent manages its own context by reading and writing files. Instead of everything living in the context window, it can externalize information and retrieve it when needed.
+1. **System prompts** - not just a personality blurb, but standard operating procedures. The instructions that shape how the agent thinks and acts.
+2. **Built-in tools** - planning scratchpads, task lists, and other tools baked into the harness. The agent doesn't just call external APIs - it has native capabilities for reasoning and tracking its own work.
+3. **Sub-agents** - isolated context windows for specific tasks. Instead of cramming everything into one context, spin up a fresh agent for a focused job and bring back the results.
+4. **File systems** - the agent manages its own context by reading and writing files. Instead of everything living in the context window, it can externalize information and retrieve it when needed.
 
-On top of these: **skills** (curated instruction sets loaded on demand), **sandboxes** (isolated execution environments), and **memory** — with procedural memory (agents learning by updating their own instructions) being the most interesting frontier.
+On top of these: **skills** (curated instruction sets loaded on demand), **sandboxes** (isolated execution environments), and **memory** - with procedural memory (agents learning by updating their own instructions) being the most interesting frontier.
 
 His advice to companies: invest in your instructions, tools, and domain-specific skills. Frameworks and models will change; the harness you build around them is what compounds.
 
@@ -57,13 +57,13 @@ KuchiClaw uses four markdown files that persist across sessions:
 | **MEMORY.md** | Per-group | Read-write | Long-lived curated facts |
 | **CONTEXT.md** | Per-group | Read-write | Session working memory |
 
-These aren't static config. MEMORY.md and CONTEXT.md are read-write — the agent actively maintains them. When I correct it, it writes the lesson to MEMORY.md immediately. When working on a multi-step task, it uses CONTEXT.md as a scratchpad. "Remember that I prefer morning meetings" goes into MEMORY.md and persists across every future session.
+These aren't static config. MEMORY.md and CONTEXT.md are read-write - the agent actively maintains them. When I correct it, it writes the lesson to MEMORY.md immediately. When working on a multi-step task, it uses CONTEXT.md as a scratchpad. "Remember that I prefer morning meetings" goes into MEMORY.md and persists across every future session.
 
-The key insight here is that the agent doesn't try to hold everything in its context window. It externalizes durable facts to files and pulls them back when relevant — which is exactly the "file system as context management" approach Chase describes.
+The key insight here is that the agent doesn't try to hold everything in its context window. It externalizes durable facts to files and pulls them back when relevant - which is exactly the "file system as context management" approach Chase describes.
 
 ### Container Isolation
 
-Every invocation gets a fresh Docker container. It can only see what's explicitly mounted — living files, skills, and an IPC directory. Secrets go in via stdin, never touch disk.
+Every invocation gets a fresh Docker container. It can only see what's explicitly mounted - living files, skills, and an IPC directory. Secrets go in via stdin, never touch disk.
 
 ```
 Telegram ──→ Orchestrator ──→ Per-Group Queue ──→ Docker Container
@@ -76,13 +76,13 @@ Telegram ──→ Orchestrator ──→ Per-Group Queue ──→ Docker Conta
                                                     └── skills/ (read-only)
 ```
 
-The container is the security boundary. The agent can browse the web, manage its memory, run skills, and send IPC requests to the host — but nothing outside its mounts exists to it. Enough capability to be useful, but the blast radius is contained.
+The container is the security boundary. The agent can browse the web, manage its memory, run skills, and send IPC requests to the host - but nothing outside its mounts exists to it. Enough capability to be useful, but the blast radius is contained.
 
 ### Skills
 
 Two tiers that coexist:
 
-**Simple skills** are scripts in a `skills/` directory, mounted read-only. The agent reads TOOLS.md for usage docs and shells out. No framework, no protocol — drop a script, document it, done. My FastMail integration is a 200-line Node.js script wrapping the JMAP API for sending and reading email.
+**Simple skills** are scripts in a `skills/` directory, mounted read-only. The agent reads TOOLS.md for usage docs and shells out. No framework, no protocol - drop a script, document it, done. My FastMail integration is a 200-line Node.js script wrapping the JMAP API for sending and reading email.
 
 **MCP skills** use the [Model Context Protocol](https://modelcontextprotocol.io/) standard. MCP server configs get passed to the Claude Agent SDK, which auto-discovers tools and handles invocation. Better for cases where structured schemas and tool discovery matter.
 
@@ -92,15 +92,15 @@ Adding a new capability is either "write a script and add a paragraph to TOOLS.m
 
 Two levels:
 
-**Short-term:** the last 20 messages from SQLite, injected into the system prompt. This gives the agent conversational continuity — it can connect "plan a trip to Japan" from three messages ago with "what about hotels?" now.
+**Short-term:** the last 20 messages from SQLite, injected into the system prompt. This gives the agent conversational continuity - it can connect "plan a trip to Japan" from three messages ago with "what about hotels?" now.
 
-**Long-term:** MEMORY.md. The agent curates this over time — facts, preferences, lessons learned. It's version-controlled and backed up daily to a private Git repo. This is the closest thing to procedural memory: the agent is literally updating its own instructions as it learns.
+**Long-term:** MEMORY.md. The agent curates this over time - facts, preferences, lessons learned. It's version-controlled and backed up daily to a private Git repo. This is the closest thing to procedural memory: the agent is literally updating its own instructions as it learns.
 
 ### The Claude Agent SDK
 
-Worth noting: a lot of what makes this work comes from the [Claude Agent SDK](https://www.npmjs.com/package/@anthropic-ai/claude-agent-sdk) itself. The SDK bundles a full agent runtime with built-in tools — file read/write, web search, bash execution, codebase navigation, sub-agent spawning. It also handles the agentic loop: tool calls, result processing, multi-turn reasoning. KuchiClaw doesn't reinvent any of that.
+Worth noting: a lot of what makes this work comes from the [Claude Agent SDK](https://www.npmjs.com/package/@anthropic-ai/claude-agent-sdk) itself. The SDK bundles a full agent runtime with built-in tools - file read/write, web search, bash execution, codebase navigation, sub-agent spawning. It also handles the agentic loop: tool calls, result processing, multi-turn reasoning. KuchiClaw doesn't reinvent any of that.
 
-What KuchiClaw adds is the orchestration layer — container isolation, living files, per-group memory, IPC, scheduling, crash recovery, skills. The SDK is the agent runtime; KuchiClaw is the harness that gives it persistence, security, and a way to interact with the real world.
+What KuchiClaw adds is the orchestration layer - container isolation, living files, per-group memory, IPC, scheduling, crash recovery, skills. The SDK is the agent runtime; KuchiClaw is the harness that gives it persistence, security, and a way to interact with the real world.
 
 ---
 
@@ -108,9 +108,9 @@ What KuchiClaw adds is the orchestration layer — container isolation, living f
 
 **Living files beat vector databases for personal agents.** MEMORY.md is a markdown file the agent reads and writes directly. Simple, auditable, version-controllable. I can open it in any editor and see exactly what the agent "knows." Scales to thousands of facts before you need anything fancier.
 
-**Container isolation is worth the overhead.** Each session is a clean room — no state leaks, no accidental corruption, no cross-chat data access. A ~698MB image and a few seconds of startup is a fair trade for security guarantees that would be painful to enforce any other way.
+**Container isolation is worth the overhead.** Each session is a clean room - no state leaks, no accidental corruption, no cross-chat data access. A ~698MB image and a few seconds of startup is a fair trade for security guarantees that would be painful to enforce any other way.
 
-**The harness compounds.** Every skill I add makes the agent more capable. Every improvement to the memory system makes it smarter over time. The model itself is interchangeable — when a better one comes out, I change one config value. The harness is what makes it *mine*.
+**The harness compounds.** Every skill I add makes the agent more capable. Every improvement to the memory system makes it smarter over time. The model itself is interchangeable - when a better one comes out, I change one config value. The harness is what makes it *mine*.
 
 **Start concrete, not abstract.** No plugin system, no provider abstraction, no configuration DSL. Skills are shell scripts. Memory is a markdown file. IPC is JSON files in a directory. Boring choices that let me ship something that works. Abstraction can come later, when patterns actually emerge.
 
@@ -118,12 +118,12 @@ What KuchiClaw adds is the orchestration layer — container isolation, living f
 
 ## The Bigger Picture
 
-The models keep getting better. But the harnesses — the tools, memory systems, skills, and execution environments around them — are what determine whether an agent is a toy or a tool.
+The models keep getting better. But the harnesses - the tools, memory systems, skills, and execution environments around them - are what determine whether an agent is a toy or a tool.
 
-Chase's recommendation makes sense: invest in proprietary instructions, tools, and domain-specific skills. The framework you use today might not exist next year. The model will definitely be different. But the harness — the curated tools, the memory architecture, the skills encoding domain knowledge — that's what lasts.
+Chase's recommendation makes sense: invest in proprietary instructions, tools, and domain-specific skills. The framework you use today might not exist next year. The model will definitely be different. But the harness - the curated tools, the memory architecture, the skills encoding domain knowledge - that's what lasts.
 
 If you're building agents, I'd encourage spending less time comparing models and more time on the scaffolding. Good tools, persistent memory, a clean execution environment. The harness is the product.
 
 ---
 
-KuchiClaw is [open source on GitHub](https://github.com/tuggspeedman-ai/kuchiclaw). It's designed to be forked, read, and modified — not installed as a dependency. If you're building in this space or thinking about agent architectures, I'd love to connect.
+KuchiClaw is [open source on GitHub](https://github.com/tuggspeedman-ai/kuchiclaw). It's designed to be forked, read, and modified - not installed as a dependency. If you're building in this space or thinking about agent architectures, I'd love to connect.
