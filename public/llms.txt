@@ -1,0 +1,33 @@
+# Jonathan Avni
+
+> Jonathan Avni is a product leader and AI builder with 10+ years of experience building developer platforms and payments infrastructure at Yahoo, Pinterest, Coinbase, and Paxos. He now builds AI products independently — training language models, building agent frameworks, and writing about the intersection of AI and product development.
+
+## About
+
+Jonathan's career spans ad tech (Yahoo Gemini, $1B+ run-rate), social commerce (Pinterest Marketing APIs, 200+ partners), crypto payments (Coinbase, $100B+ annual volume), and stablecoins (Paxos, built and launched PayPal USD with $3B+ market cap). He now focuses full-time on AI — training models from scratch, building agentic systems, and exploring machine-to-machine payment protocols.
+
+- Website: https://jonathanavni.com
+- GitHub: https://github.com/tuggspeedman-ai
+- LinkedIn: https://linkedin.com/in/jonathanavni
+- X/Twitter: https://x.com/YOAVNI
+- Email: me@jonathanavni.com
+
+## Projects
+
+- [KuchiClaw](https://jonathanavni.com/projects/kuchiclaw): A minimal AI agent framework — ephemeral containers, living file memory, filesystem IPC. Built on Claude Agent SDK with Docker, Telegram, and a two-tier skills system.
+- [TinyBrain](https://jonathanavni.com/projects/tinybrain): An AI inference service that earns and spends money autonomously via the x402 payment protocol. Charges $0.01/query, routes complex queries to DeepSeek R1 for ~$0.001.
+- [TinyChat](https://jonathanavni.com/projects/tinychat): A 561M-parameter language model trained from scratch for ~$95 — custom BPE tokenizer, GPT architecture with RoPE and Multi-Query Attention, trained on ~38B tokens.
+- [PagePiper](https://jonathanavni.com/projects/pagepiper): A Chrome extension that converts web pages to clean markdown using Readability.js and Turndown.js.
+- [Talk2Docs](https://jonathanavni.com/projects/talk2docs): A full-stack RAG platform for chatting with PDFs, URLs, and podcasts — custom chunking, hybrid retrieval, query classification, and citation validation.
+
+## Blog Posts
+
+- [Building a Personal AI Agent From Scratch: What I Learned About Agent Harnesses](https://jonathanavni.com/blog/building-ai-agent-from-scratch) (2026-03-13): The model is 10% of what makes an agent useful — the other 90% is the harness.
+- [Upgrading My AI-Powered Second Brain With Reflexive Search](https://jonathanavni.com/blog/upgrading-second-brain-reflexive-search) (2026-03-30): Progressive disclosure optimized how Claude searches my Obsidian vault. Reflexive search optimized when.
+- [Why x402 Has My Attention](https://jonathanavni.com/blog/why-x402-has-my-attention) (2026-03-04): The convergence of stablecoins and AI agents is enabling a new category of machine-to-machine payments.
+- [My OpenClaw Setup](https://jonathanavni.com/blog/my-openclaw-setup) (2026-02-28): How I set up OpenClaw as a personal AI assistant on a $20/month VPS.
+- [My Personalized AI-Powered Second Brain](https://jonathanavni.com/blog/ai-powered-second-brain) (2026-01-30): A personalized knowledge management system using Claude Code and Obsidian.
+
+## Topics
+
+Jonathan writes and builds in these areas: AI agents, LLM training, RAG systems, prompt engineering, developer tools, payments infrastructure, stablecoins, x402 protocol, Chrome extensions, and product management.

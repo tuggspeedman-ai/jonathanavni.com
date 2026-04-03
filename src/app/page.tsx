@@ -13,17 +13,30 @@ const jsonLd = {
   url: "https://jonathanavni.com",
   jobTitle: "Product Leader & AI Builder",
   description:
-    "10+ years building developer platforms and payments infrastructure at Yahoo, Pinterest, Coinbase, and Paxos. Now going deep on AI.",
+    "Product leader and AI builder with 10+ years building developer platforms and payments infrastructure at Yahoo, Pinterest, Coinbase, and Paxos. Now building AI products independently — training language models, building agent frameworks, and writing about AI and product development.",
+  image: "https://jonathanavni.com/opengraph-image",
+  email: "me@jonathanavni.com",
+  knowsAbout: [
+    "Artificial Intelligence",
+    "Large Language Models",
+    "AI Agents",
+    "Product Management",
+    "Payments Infrastructure",
+    "Stablecoins",
+    "Developer Platforms",
+    "RAG Systems",
+    "Machine Learning",
+  ],
   sameAs: [
     "https://github.com/tuggspeedman-ai",
     "https://linkedin.com/in/jonathanavni",
     "https://x.com/YOAVNI",
   ],
-  worksFor: [
-    { "@type": "Organization", name: "Yahoo" },
-    { "@type": "Organization", name: "Pinterest" },
-    { "@type": "Organization", name: "Coinbase" },
-    { "@type": "Organization", name: "Paxos" },
+  alumniOf: [
+    { "@type": "Organization", name: "Yahoo", description: "Product Manager — Founded Yahoo Gemini, $1B+ run-rate monetization (2012–2015)" },
+    { "@type": "Organization", name: "Pinterest", description: "Product Manager, Monetization — Marketing APIs, 200+ partners, 50%+ revenue (2015–2018)" },
+    { "@type": "Organization", name: "Coinbase", description: "Senior PM, Payments — Payments infrastructure, $100B+ annual volume (2019–2021)" },
+    { "@type": "Organization", name: "Paxos", description: "Product Lead, Stablecoins — Built and launched PayPal USD, $3B+ market cap (2022–2024)" },
   ],
 };
 

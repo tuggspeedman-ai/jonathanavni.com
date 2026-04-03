@@ -28,8 +28,32 @@ export default async function BlogPostPage({ params }: Props) {
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    url: `https://jonathanavni.com/blog/${slug}`,
+    author: {
+      "@type": "Person",
+      name: "Jonathan Avni",
+      url: "https://jonathanavni.com",
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Jonathan Avni",
+      url: "https://jonathanavni.com",
+    },
+    ...(post.tags && post.tags.length > 0 && { keywords: post.tags.join(", ") }),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navigation />
       <main className="pt-24 pb-16">
         <BlogPostClient post={post} />

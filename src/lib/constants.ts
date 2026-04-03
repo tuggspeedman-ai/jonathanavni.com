@@ -4,7 +4,7 @@ export const SITE = {
   description:
     "10 years building developer platforms at Yahoo, Pinterest, Coinbase, and Paxos. Now going deep on AI — training models, building products, and writing about it.",
   url: "https://jonathanavni.com",
-  email: "jonathan@jonathanavni.com",
+  email: "me@jonathanavni.com",
 } as const;
 
 export const SOCIAL = {
