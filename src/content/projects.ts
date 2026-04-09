@@ -2,6 +2,42 @@ import { Project } from "@/types";
 
 export const projects: Project[] = [
   {
+    slug: "deep-research-agent",
+    name: "Deep Research Agent",
+    tagline:
+      "An agentic research system with planning, sub-agent delegation, and human-in-the-loop approval",
+    description:
+      "A deep research agent that accepts natural language questions, creates a structured research plan, obtains human approval, then delegates specialized research tasks to isolated sub-agents that conduct web searches and synthesize findings. Uses file-based context offloading instead of context stuffing, and runs Gemma 4 locally via Ollama or any cloud LLM.",
+    status: "live",
+    stats: [
+      { label: "Framework", value: "LangGraph" },
+      { label: "Local Model", value: "Gemma 4 27B" },
+      { label: "Test Coverage", value: "52 tests" },
+      { label: "Language", value: "Python" },
+    ],
+    techStack: [
+      "LangGraph",
+      "LangChain",
+      "Gemma 4",
+      "Ollama",
+      "Tavily API",
+      "Next.js",
+      "Python 3.12",
+      "pytest",
+    ],
+    links: {
+      github: "https://github.com/tuggspeedman-ai/deep-research-agent",
+    },
+    screenshots: [
+      "/images/projects/deep-research-agent/research_results.png",
+      "/images/projects/deep-research-agent/tasks_running.png",
+      "/images/projects/deep-research-agent/HITL_approval.png",
+      "/images/projects/deep-research-agent/langsmith_trace2.png",
+    ],
+    featured: true,
+    order: 0,
+  },
+  {
     slug: "tinychat",
     name: "TinyChat",
     tagline: "A 561M-parameter LLM trained from scratch for ~$95",
