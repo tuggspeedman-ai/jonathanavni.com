@@ -15,6 +15,7 @@ interface ProjectPageClientProps {
 
 export function ProjectPageClient({ project }: ProjectPageClientProps) {
   const isTalk2Docs = project.slug === "talk2docs";
+  const hideHeroScreenshot = project.slug === "deep-research-agent";
 
   return (
     <div className="mx-auto max-w-6xl px-6">
@@ -93,7 +94,7 @@ export function ProjectPageClient({ project }: ProjectPageClientProps) {
       </motion.div>
 
       {/* Hero screenshot */}
-      {project.screenshots.length > 0 && (
+      {project.screenshots.length > 0 && !hideHeroScreenshot && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -130,7 +131,7 @@ export function ProjectPageClient({ project }: ProjectPageClientProps) {
       {isTalk2Docs && <Talk2DocsDetail />}
 
       {/* Additional screenshots gallery */}
-      {project.screenshots.length > 1 && (
+      {(hideHeroScreenshot ? project.screenshots.length > 0 : project.screenshots.length > 1) && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -142,7 +143,7 @@ export function ProjectPageClient({ project }: ProjectPageClientProps) {
             Screenshots
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {project.screenshots.slice(1).map((src, i) => (
+            {(hideHeroScreenshot ? project.screenshots : project.screenshots.slice(1)).map((src, i) => (
               <div
                 key={i}
                 className="overflow-hidden rounded-lg border border-border"

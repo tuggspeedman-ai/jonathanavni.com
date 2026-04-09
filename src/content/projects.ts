@@ -29,10 +29,10 @@ export const projects: Project[] = [
       github: "https://github.com/tuggspeedman-ai/deep-research-agent",
     },
     screenshots: [
-      "/images/projects/deep-research-agent/research_results.png",
-      "/images/projects/deep-research-agent/tasks_running.png",
       "/images/projects/deep-research-agent/HITL_approval.png",
+      "/images/projects/deep-research-agent/tasks_running.png",
       "/images/projects/deep-research-agent/langsmith_trace2.png",
+      "/images/projects/deep-research-agent/research_results.png",
     ],
     featured: true,
     order: 0,
