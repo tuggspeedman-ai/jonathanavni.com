@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s | Jonathan Avni",
   },
   description:
-    "10+ years building developer platforms and payments infrastructure at Yahoo, Pinterest, Coinbase, and Paxos. Now going deep on AI — training models, building products, and writing about it.",
+    "10+ years building developer platforms and payments infrastructure at Yahoo, Pinterest, Coinbase, and Paxos. Now going deep on AI. Training models, building products, and writing about it.",
   metadataBase: new URL("https://jonathanavni.com"),
   openGraph: {
     title: "Jonathan Avni — Product Leader & AI Builder",

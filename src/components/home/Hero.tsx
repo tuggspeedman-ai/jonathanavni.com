@@ -63,8 +63,8 @@ export function Hero() {
               className="text-lg md:text-xl text-text-secondary leading-relaxed max-w-2xl mb-12"
             >
               10+ years building developer platforms and payments infrastructure
-              at Yahoo, Pinterest, Coinbase, and Paxos. Now going deep on AI —
-              training models, building products, and writing about it.
+              at Yahoo, Pinterest, Coinbase, and Paxos. Now going deep on AI.
+              Training models, building products, and writing about it.
             </motion.p>
 
             {/* CTA */}

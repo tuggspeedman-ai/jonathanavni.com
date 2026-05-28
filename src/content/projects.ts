@@ -2,6 +2,42 @@ import { Project } from "@/types";
 
 export const projects: Project[] = [
   {
+    slug: "llm-fine-tuning-course",
+    name: "LLM Fine-tuning Course",
+    tagline:
+      "Fine-tuning a 3B language model end-to-end on the HF Hub: SFT, DPO, and a vision-language sidetrack",
+    description:
+      "I worked through Hugging Face's Smol Fine-Tuning Language Models course and shipped a preference-aligned small model to the Hub. SmolLM3-3B-Base taken through SFT on 12k summarization examples, then DPO on 12k preference pairs, with DPO continuing to train the same LoRA rather than starting fresh (and the pre-DPO state frozen as the reference policy). A SmolVLM2-2.2B ChartQA adapter sits alongside as a vision-language sidetrack, where LoRA adapts the LLM while the SigLIP vision encoder stays frozen. Four LoRA adapters published, all reproducible from the public code.",
+    status: "live",
+    stats: [
+      { label: "Base Model", value: "SmolLM3-3B" },
+      { label: "Methods", value: "SFT + DPO" },
+      { label: "Adapters Shipped", value: "4" },
+      { label: "Total Compute", value: "~$12" },
+    ],
+    techStack: [
+      "PyTorch",
+      "Hugging Face TRL",
+      "PEFT (LoRA)",
+      "HF Jobs (A100/A10G)",
+      "Python 3.12",
+      "uv",
+      "Trackio",
+    ],
+    links: {
+      github: "https://github.com/tuggspeedman-ai/hf-smol-course",
+      live: "https://huggingface.co/tuggspeedman-ai/SmolLM3-3B-summarize-dpo-lora",
+    },
+    screenshots: [
+      "/images/projects/llm-fine-tuning-course/model-card.png",
+      "/images/projects/llm-fine-tuning-course/training-run.png",
+      "/images/projects/llm-fine-tuning-course/training-run-2.png",
+      "/images/projects/llm-fine-tuning-course/code-snippet.png",
+    ],
+    featured: true,
+    order: 0,
+  },
+  {
     slug: "deep-research-agent",
     name: "Deep Research Agent",
     tagline:
@@ -35,7 +71,7 @@ export const projects: Project[] = [
       "/images/projects/deep-research-agent/research_results.png",
     ],
     featured: true,
-    order: 0,
+    order: 1,
   },
   {
     slug: "tinychat",
@@ -67,13 +103,13 @@ export const projects: Project[] = [
       "/images/projects/tinychat/tinychat-wandb.png",
     ],
     featured: true,
-    order: 3,
+    order: 4,
   },
   {
     slug: "kuchiclaw",
     name: "KuchiClaw",
     tagline:
-      "A minimal AI agent framework — ephemeral containers, living file memory, filesystem IPC",
+      "A minimal AI agent framework: ephemeral containers, living file memory, filesystem IPC",
     description:
       "A personal AI agent that runs 24/7 on a VPS, talks through Telegram, manages its own memory, sends emails, and runs scheduled tasks autonomously. Built on the Claude Agent SDK with ephemeral Docker containers, living markdown files for memory, filesystem IPC, and a two-tier skills system (shell scripts + MCP).",
     status: "live",
@@ -97,7 +133,7 @@ export const projects: Project[] = [
     },
     screenshots: ["/images/projects/kuchiclaw/kuchiclaw-screenshot.png"],
     featured: true,
-    order: 1,
+    order: 2,
   },
   {
     slug: "tinybrain",
@@ -131,7 +167,7 @@ export const projects: Project[] = [
       "/images/projects/tinybrain/tinybrain-screenshot-4.png",
     ],
     featured: true,
-    order: 2,
+    order: 3,
   },
   {
     slug: "talk2docs",
@@ -169,7 +205,7 @@ export const projects: Project[] = [
       "/images/projects/talk2docs/talk2docs-7.png",
     ],
     featured: true,
-    order: 5,
+    order: 6,
   },
   {
     slug: "pagepiper",
@@ -198,7 +234,7 @@ export const projects: Project[] = [
       "/images/projects/pagepiper/screenshot-3-store.png",
     ],
     featured: false,
-    order: 4,
+    order: 5,
   },
 ];
 
