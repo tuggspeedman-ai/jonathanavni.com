@@ -1,0 +1,84 @@
+---
+title: "Two Models Today, Meta-Harnesses Tomorrow: How I Code With Claude and Codex"
+date: "2026-06-29"
+excerpt: "I build with two coding agents at once: Claude as the orchestrator that plans and holds context, and Codex as a bounded implementer and adversarial reviewer. Across sessions, the two models catch almost completely different bugs, and that gap is the point."
+tags: ["AI", "Agents", "Claude Code", "Codex", "Agentic Coding"]
+---
+
+For the last few months I've been building projects with two AI coding agents instead of one. Claude Code is the orchestrator. It holds the plan, owns the project's memory, and decides what happens next. Codex is the second pair of hands, and more importantly the second pair of eyes. It implements bounded slices of risky work and tears apart everything before it merges. The whole setup runs inside Claude Code, with Codex wired in through its plugin.
+
+This isn't a novel idea. Anthropic's own guidance on long-running agents argues that [external evaluation beats self-evaluation](https://www.anthropic.com/engineering/harness-design-long-running-apps), because models reliably overpraise their own work, so generation and judgment should be separated. Factory's [Missions architecture](https://www.youtube.com/watch?v=ow1we5PzK-o) splits the same way, into an orchestrator that plans, workers that implement, and validators that never see the implementation code. I wanted that separation in a solo setup, so I built a lighter version of it across two model families.
+
+## One orchestrator, one adversary
+
+The idea is simple. One agent owns continuity. The other owns bounded challenge.
+
+Claude owns continuity. It runs the session start to finish: orienting on the current state, drafting plans, sequencing work, keeping a decisions log, and integrating everything at the end. It's the agent that remembers why a thing was built the way it was, and I never let the other model touch that layer.
+
+That continuity is enforced, not hoped for. Every session ends with a `/wrapup` step that records what got done, the decisions and the reasoning behind them, and updates the memory files and planning docs. The next session opens with `/start`, which reads all of that back in. A fresh context picks up exactly where the last one left off, with no re-explaining from me.
+
+Codex is the bounded specialist. It gets two kinds of jobs: implement a tightly scoped slice of work on its own branch, or review a plan or a diff adversarially. It doesn't touch the plan, the memory, or anything outside the files it's handed. Claude dispatches it as a background job with a precise brief and waits for it to report back. The two never share a context window. Codex works from a contract, not from Claude's conversation history, and that matters more than I expected.
+
+## The ladder
+
+For low-stakes work I let Claude implement directly, or hand it to a fresh-context subagent. The two-model dance is overhead, and not every change needs it.
+
+For surfaces where a silent bug is expensive, like database migrations, payment code, or public API contracts, I run the full ladder:
+
+1. I give Claude the high-level requirements and the test criteria: what has to be true when this is done, and how we'll know.
+2. Claude drafts the plan, with root causes, risks, sequencing, and tradeoffs.
+3. Codex reviews that plan adversarially, before any code is written. Catching a bad design here is far cheaper than catching it in a diff.
+4. Claude synthesizes the findings and locks the plan.
+5. Codex implements one bounded slice on its own branch. On high-risk surfaces I don't implement in parallel with my own model, since that would erase the cross-model coverage.
+6. Claude reviews the diff with a fresh-context QA pass, full project conventions loaded.
+7. Codex reviews the same diff adversarially. Different model, different blind spots.
+8. Claude integrates, merges, and updates the plan and memory.
+
+The key move is steps 5 and 7 together: the model that didn't write the code is the one attacking it. No model grades its own homework on the parts that matter.
+
+## Why two models, not one model run twice
+
+I didn't arrive at this by accident. I built the ladder following what I've heard from other builders, and what I've read about how teams like OpenAI run Codex internally, where a separate review pass is a real gate and not a formality. What convinced me to keep it was watching where the findings came from.
+
+I kept rough track. Across sessions, Claude's review and Codex's review catch roughly 95% disjoint issues. Claude, same model family as the implementer and full project context, is strong on convention violations, domain-logic correctness, and "this doesn't match how the rest of the codebase does it." Codex, a different family working from only the handoff packet, is strong on cross-system races, contract drift across files, and the quiet reinterpretation of a locked rule three files away.
+
+That gives me two rules:
+
+- A finding both models flag is high-confidence. Fix it.
+- A finding only one model flags is the other model's blind spot, which is exactly what a single-model review would have shipped.
+
+For open-ended work, like "find what we missed," I run them blind and in parallel: same brief, neither sees the other's findings, then I synthesize. One reviewer alone, however good the model, ships with known gaps. Two model families is the simplest way I've found to shrink them.
+
+## Why Opus and Codex
+
+I pay for both. I run Claude and Codex regularly, and I wanted to see what combining them in one workflow would do rather than picking a side.
+
+The orchestrator has been Opus the whole way, 4.6 then 4.7 and most recently 4.8. Each upgrade made it a better manager, not just a better coder: tighter plans, less drift across a long session, sharper judgment when weighing a review finding against the project's stage. 4.8 in particular holds a multi-step plan together in a way the earlier versions didn't.
+
+Codex earns its place on two jobs. The first is bounded implementation. Hand it a scoped slice with exact files, invariants, tests, and non-goals, and it does its best work from that spec rather than a transcript of how we got there. The second is [adversarial review](https://github.com/openai/codex-plugin-cc), where it has stood out. Pointing a different family at a diff, framed to refute rather than approve, has caught contract mismatches and edge-case races that passed a full Claude QA review clean.
+
+None of this is about Opus and Codex being the only right answer. The roles matter more than the brands. The same pattern should work with other models in the mix, like delegating bounded coding slices to Gemini or GLM 5.2 and running the adversarial pass with a different family. An orchestrator and an adversary are different jobs, and filling them with different model families is what makes the coverage real.
+
+## What I've learned
+
+**The orchestrator shouldn't implement the risky stuff itself.** It's tempting, because it has the most context. But the moment your planning model is also your implementing model on a high-risk surface, you've lost the cross-model coverage.
+
+**Contracts beat context transfer.** The handoffs that go well are the ones with exact scope, files, invariants, and non-goals, not the ones where I dump conversation history. A precise brief travels across models. A transcript doesn't.
+
+**Disjoint reviewers are the point.** I used to think two reviewers flagging different things meant one was wrong. It means they're covering different ground.
+
+**Some changes don't need any of this.** The ladder is for the small set of surfaces where a silent bug is expensive. Knowing when to spend the overhead is half the skill.
+
+## Where this is heading
+
+What I've built is a layer that sits above two coding agents, routes work between them, decides who can touch what, and keeps the plan portable across both. Today that layer is mostly me: my commands, my memory files, my handoff templates, my judgment about which model gets which job. I've open-sourced the skeleton of it as [tinytandem](https://github.com/tuggspeedman-ai/tinytandem): the commands, the memory layout, and the cross-model review ladder. Feel free to try it and adapt the workflow to your own projects.
+
+There's a name forming for what that layer wants to become: a meta-harness. The harness is everything around the model that turns raw intelligence into useful work. A meta-harness sits one level up and orchestrates across harnesses, so your sessions, policies, and skills stay with you no matter which agent or model is running underneath.
+
+Databricks just shipped one. [Omnigent](https://www.databricks.com/blog/introducing-omnigent-meta-harness-combine-control-and-share-your-agents) is an open-source layer that sits above harnesses like Claude Code and Codex and unifies them to combine, control, and share agents. It takes the control story further than I have, with cost ceilings that pause an agent at a budget and policies that gate a `git push` after a new dependency lands. Guardrails enforced as policy, not as hopeful instructions in a prompt.
+
+I think that's where the market is going. As frontier models converge in raw capability, the durable differentiation moves up the stack, out of the model and into the layer that composes, routes, and governs models.
+
+For now I'm sticking with my Claude-calls-Codex setup. A meta-harness earns its keep on problems I don't have yet: hard cost and security policies matter most when you can't watch every run, portability matters when you're swapping models constantly, shared sessions matter when there's a team. I'm one person working locally who can hold the whole orchestration in my head, and the lighter setup is faster for that. But the moment any of those constraints bites, the abstraction stops being overhead, and the pattern I built by hand is the same one these platforms are productizing. I'd rather understand it from the inside first.
+
+If you're building with coding agents, especially as a team of one shipping production work, try at least one other model, preferably from a different model family, purely as an adversary before you trust anything to merge. The gap between what your two models see is the cheapest coverage you'll ever buy. I'd love to hear from anyone running a similar setup.
