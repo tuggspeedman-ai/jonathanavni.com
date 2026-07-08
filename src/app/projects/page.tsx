@@ -12,7 +12,7 @@ import { ArrowRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Side projects I've built - from training LLMs to building AI-powered platforms.",
+    "Projects I've built and shipped: LLMs trained from scratch, agent frameworks, agentic payments, and a full-stack RAG platform.",
 };
 
 export default function ProjectsPage() {
@@ -26,8 +26,8 @@ export default function ProjectsPage() {
           <div className="mb-16">
             <SectionHeading>Projects</SectionHeading>
             <p className="text-text-secondary max-w-2xl -mt-6">
-              Side projects I&apos;ve built and launched - from training LLMs from
-              scratch to building full-stack AI platforms.
+              Things I&apos;ve built and shipped: LLMs trained from scratch,
+              agent frameworks, agentic payments, and a full-stack RAG platform.
             </p>
           </div>
 

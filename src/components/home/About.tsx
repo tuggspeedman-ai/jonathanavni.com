@@ -25,7 +25,7 @@ const career: CareerEntry[] = [
     company: "Coinbase",
     role: "Senior Product Manager, Payments Platforms",
     highlight:
-      "Built payments and trading infrastructure for Coinbase Retail and Enterprise customer-facing products, powering hundreds of billions of dollars in annual transaction volume.",
+      "Built payments and trading infrastructure for Coinbase Retail and Enterprise customer-facing products, moving hundreds of billions of dollars in annual transaction volume.",
   },
   {
     period: "2022–2024",
@@ -48,7 +48,7 @@ export function About() {
   return (
     <section id="about" className="py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionHeading>The Journey</SectionHeading>
+        <SectionHeading>Where I&apos;ve Been</SectionHeading>
 
         <div className="space-y-4">
           {career.map((entry, i) => (

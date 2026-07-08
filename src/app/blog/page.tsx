@@ -8,7 +8,7 @@ import { getAllPosts } from "@/lib/mdx";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Thoughts on AI, developer tools, and building products.",
+    "Learnings from my projects and from watching the AI and agentic payments space.",
 };
 
 export default function BlogPage() {
@@ -22,7 +22,8 @@ export default function BlogPage() {
           <div className="mb-16">
             <SectionHeading>Blog</SectionHeading>
             <p className="text-text-secondary max-w-2xl -mt-6">
-              Thoughts on AI, developer tools, and building products.
+              Learnings from my projects and from watching the AI and agentic
+              payments space.
             </p>
           </div>
 

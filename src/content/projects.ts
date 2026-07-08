@@ -43,7 +43,7 @@ export const projects: Project[] = [
     tagline:
       "An agentic research system with planning, sub-agent delegation, and human-in-the-loop approval",
     description:
-      "A deep research agent that accepts natural language questions, creates a structured research plan, obtains human approval, then delegates specialized research tasks to isolated sub-agents that conduct web searches and synthesize findings. Uses file-based context offloading instead of context stuffing, and runs Gemma 4 locally via Ollama or any cloud LLM.",
+      "A deep research agent that takes a question, breaks it into a research plan, waits for human approval, then hands research tasks to isolated sub-agents that search the web and synthesize findings. Uses file-based context offloading instead of context stuffing, and runs Gemma 4 locally via Ollama or any cloud LLM.",
     status: "live",
     stats: [
       { label: "Framework", value: "LangGraph" },

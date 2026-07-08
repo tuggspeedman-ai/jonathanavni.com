@@ -21,7 +21,7 @@ export function Talk2DocsDetail() {
         className="mb-16"
       >
         <h2 className="text-2xl font-serif text-text-primary mb-8">
-          Key Features
+          Features
         </h2>
         <div className="grid md:grid-cols-2 gap-4">
           {talk2docsFeatures.map((feature, i) => (
