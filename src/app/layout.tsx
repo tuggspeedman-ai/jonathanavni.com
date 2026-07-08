@@ -23,16 +23,16 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Jonathan Avni — Product Leader & AI Builder",
+    default: "Jonathan Avni - Product Leader & AI Builder",
     template: "%s | Jonathan Avni",
   },
   description:
-    "10+ years building developer platforms and payments infrastructure at Yahoo, Pinterest, Coinbase, and Paxos. Now going deep on AI. Training models, building products, and writing about it.",
+    "13+ years shipping developer APIs and payments infrastructure at Coinbase, Paxos, Pinterest, and Yahoo. Now building at the intersection of payments and AI agents.",
   metadataBase: new URL("https://jonathanavni.com"),
   openGraph: {
-    title: "Jonathan Avni — Product Leader & AI Builder",
+    title: "Jonathan Avni - Product Leader & AI Builder",
     description:
-      "10+ years building developer platforms and payments infrastructure at Yahoo, Pinterest, Coinbase, and Paxos. Now going deep on AI.",
+      "13+ years shipping developer APIs and payments infrastructure at Coinbase, Paxos, Pinterest, and Yahoo. Now building at the intersection of payments and AI agents.",
     url: "https://jonathanavni.com",
     siteName: "Jonathan Avni",
     locale: "en_US",
@@ -40,9 +40,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jonathan Avni — Product Leader & AI Builder",
+    title: "Jonathan Avni - Product Leader & AI Builder",
     description:
-      "10+ years building developer platforms and payments infrastructure at Yahoo, Pinterest, Coinbase, and Paxos. Now going deep on AI.",
+      "13+ years shipping developer APIs and payments infrastructure at Coinbase, Paxos, Pinterest, and Yahoo. Now building at the intersection of payments and AI agents.",
   },
   robots: {
     index: true,

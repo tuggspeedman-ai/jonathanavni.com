@@ -18,7 +18,7 @@ const career: CareerEntry[] = [
     company: "Pinterest",
     role: "Product Manager, Monetization",
     highlight:
-      "Launched Marketing APIs used by 200+ partners, accounted for 50%+ of 2018 revenue.",
+      "Launched Marketing APIs used by 100+ partners, accounted for 50%+ of 2018 revenue.",
   },
   {
     period: "2019–2021",
@@ -39,7 +39,7 @@ const career: CareerEntry[] = [
     company: "Independent",
     role: "AI Builder",
     highlight:
-      "Went deep on AI - courses, workshops, and building. Trained LLMs from scratch, built a RAG platform, and shipped agentic products to paying users.",
+      "Trained an LLM from scratch, published fine-tuned adapters on Hugging Face, built a RAG platform with paying users, and open-sourced two agent frameworks.",
     isCurrent: true,
   },
 ];

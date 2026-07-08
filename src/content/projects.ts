@@ -25,7 +25,7 @@ export const projects: Project[] = [
       "Trackio",
     ],
     links: {
-      github: "https://github.com/tuggspeedman-ai/hf-smol-course",
+      github: "https://github.com/jonathanavni/hf-smol-course",
       live: "https://huggingface.co/tuggspeedman-ai/SmolLM3-3B-summarize-dpo-lora",
     },
     screenshots: [
@@ -62,7 +62,7 @@ export const projects: Project[] = [
       "pytest",
     ],
     links: {
-      github: "https://github.com/tuggspeedman-ai/deep-research-agent",
+      github: "https://github.com/jonathanavni/deep-research-agent",
     },
     screenshots: [
       "/images/projects/deep-research-agent/HITL_approval.png",
@@ -78,7 +78,7 @@ export const projects: Project[] = [
     name: "TinyChat",
     tagline: "A 561M-parameter LLM trained from scratch for ~$95",
     description:
-      "A language model built from scratch — custom BPE tokenizer, GPT architecture with RoPE and Multi-Query Attention, trained on ~38B tokens from FineWeb-EDU, then fine-tuned for conversation. Deployed on Modal serverless GPU with a Next.js frontend.",
+      "A language model built from scratch: custom BPE tokenizer, GPT architecture with RoPE and Multi-Query Attention, trained on ~38B tokens from FineWeb-EDU, then fine-tuned for conversation. Deployed on Modal serverless GPU with a Next.js frontend.",
     status: "live",
     stats: [
       { label: "Parameters", value: "561M" },
@@ -94,7 +94,7 @@ export const projects: Project[] = [
       "SSE Streaming",
     ],
     links: {
-      github: "https://github.com/tuggspeedman-ai/tinychat",
+      github: "https://github.com/jonathanavni/tinychat",
       live: "https://tinychat-two.vercel.app",
     },
     screenshots: [
@@ -128,7 +128,7 @@ export const projects: Project[] = [
       "MCP",
     ],
     links: {
-      github: "https://github.com/tuggspeedman-ai/kuchiclaw",
+      github: "https://github.com/jonathanavni/kuchiclaw",
       blog: "/blog/building-ai-agent-from-scratch",
     },
     screenshots: ["/images/projects/kuchiclaw/kuchiclaw-screenshot.png"],
@@ -157,7 +157,7 @@ export const projects: Project[] = [
       "Framer Motion",
     ],
     links: {
-      github: "https://github.com/tuggspeedman-ai/tinybrain",
+      github: "https://github.com/jonathanavni/tinybrain",
       live: "https://tinybrain.vercel.app",
     },
     screenshots: [
@@ -175,7 +175,7 @@ export const projects: Project[] = [
     tagline:
       "A full-stack RAG platform for chatting with PDFs, URLs, and podcasts",
     description:
-      "A RAG platform for chatting with your documents — custom chunking, hybrid retrieval, query classification, multi-document synthesis, and citation validation. Built with Next.js, Supabase, Stripe, and Clerk, deployed on Vercel and Railway.",
+      "A RAG platform for chatting with your documents: custom chunking, hybrid retrieval, query classification, multi-document synthesis, and citation validation. Built with Next.js, Supabase, Stripe, and Clerk, deployed on Vercel and Railway.",
     status: "sunset",
     stats: [
       { label: "React Components", value: "105" },
@@ -225,7 +225,7 @@ export const projects: Project[] = [
       "Manifest V3",
     ],
     links: {
-      github: "https://github.com/tuggspeedman-ai/pagepiper",
+      github: "https://github.com/jonathanavni/pagepiper",
       live: "https://chromewebstore.google.com/detail/PagePiper/bhjfdfjpbchjnjdpfjdjdnjjaoloehlp",
     },
     screenshots: [

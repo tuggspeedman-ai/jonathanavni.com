@@ -1,4 +1,4 @@
-export const talk2docsOverview = `A Next.js app (TypeScript + React) using PostgreSQL (via Supabase) for database operations and vector search, Stripe for payments, and Clerk for auth. Infra runs on Vercel and Railway. Upload a document — a PDF, a URL, a podcast episode — and Talk2Docs lets you chat with it. Ask questions and get answers grounded in your actual content, with clickable citations that jump to the source. The RAG pipeline is built from scratch, including agentic RAG for multi-document chats.`;
+export const talk2docsOverview = `A Next.js app (TypeScript + React) using PostgreSQL (via Supabase) for database operations and vector search, Stripe for payments, and Clerk for auth. Infra runs on Vercel and Railway. Upload a document (a PDF, a URL, or a podcast episode) and Talk2Docs lets you chat with it. Ask questions and get answers grounded in your actual content, with clickable citations that jump to the source. The RAG pipeline is built from scratch, including agentic RAG for multi-document chats.`;
 
 export const talk2docsFeatures = [
   {
@@ -14,7 +14,7 @@ export const talk2docsFeatures = [
   {
     title: "Projects",
     description:
-      "Group multiple documents and chat across all of them — the system routes queries to the most relevant documents first.",
+      "Group multiple documents and chat across all of them. The system routes queries to the most relevant documents first.",
   },
   {
     title: "Custom RAG Pipeline",
@@ -76,12 +76,12 @@ export const talk2docsLearnings = [
   {
     title: "Built to learn",
     detail:
-      "I was learning about RAG at the time, and my initial motivation was to build a retrieval system from scratch — no LangChain, no LlamaIndex — to really understand every layer of the pipeline.",
+      "I was learning about RAG at the time, and my initial motivation was to build a retrieval system from scratch, with no LangChain and no LlamaIndex, to really understand every layer of the pipeline.",
   },
   {
     title: "My first full product built with AI",
     detail:
-      "This was the first end-to-end product I built using AI coding tools. I started with Cursor and tried different models. While building Talk2Docs, both Claude Code and Codex came out — I tried both and landed on Claude Code, which is my primary agentic coding tool today.",
+      "This was the first end-to-end product I built using AI coding tools. I started with Cursor and tried different models. While building Talk2Docs, both Claude Code and Codex came out. I tried both and landed on Claude Code, which is my primary agentic coding tool today.",
   },
   {
     title: "AI accelerates the 80%, you still own the 20%",
@@ -91,6 +91,6 @@ export const talk2docsLearnings = [
   {
     title: "Shipped, learned, moved on",
     detail:
-      "Talk2Docs was live for a few months with dozens of users. I learned a lot from building and operating it — then wound it down to focus on what came next.",
+      "Talk2Docs was live for a few months with dozens of users. I learned a lot from building and operating it, then wound it down to focus on what came next.",
   },
 ];

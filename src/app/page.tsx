@@ -13,7 +13,7 @@ const jsonLd = {
   url: "https://jonathanavni.com",
   jobTitle: "Product Leader & AI Builder",
   description:
-    "Product leader and AI builder with 10+ years building developer platforms and payments infrastructure at Yahoo, Pinterest, Coinbase, and Paxos. Now building AI products independently — training language models, building agent frameworks, and writing about AI and product development.",
+    "Product leader and AI builder with 13+ years shipping developer APIs and payments infrastructure at Coinbase, Paxos, Pinterest, and Yahoo. Now building at the intersection of payments and AI agents: training language models, building agent frameworks, and writing about AI and product development.",
   image: "https://jonathanavni.com/opengraph-image",
   email: "me@jonathanavni.com",
   knowsAbout: [
@@ -28,15 +28,15 @@ const jsonLd = {
     "Machine Learning",
   ],
   sameAs: [
-    "https://github.com/tuggspeedman-ai",
+    "https://github.com/jonathanavni",
     "https://linkedin.com/in/jonathanavni",
     "https://x.com/YOAVNI",
   ],
   alumniOf: [
-    { "@type": "Organization", name: "Yahoo", description: "Product Manager — Founded Yahoo Gemini, $1B+ run-rate monetization (2012–2015)" },
-    { "@type": "Organization", name: "Pinterest", description: "Product Manager, Monetization — Marketing APIs, 200+ partners, 50%+ revenue (2015–2018)" },
-    { "@type": "Organization", name: "Coinbase", description: "Senior PM, Payments — Payments infrastructure, $100B+ annual volume (2019–2021)" },
-    { "@type": "Organization", name: "Paxos", description: "Product Lead, Stablecoins — Built and launched PayPal USD, $3B+ market cap (2022–2024)" },
+    { "@type": "Organization", name: "Yahoo", description: "Product Manager - Founded Yahoo Gemini, $1B+ run-rate monetization (2012–2015)" },
+    { "@type": "Organization", name: "Pinterest", description: "Product Manager, Monetization - Marketing APIs, 100+ partners, 50%+ revenue (2015–2018)" },
+    { "@type": "Organization", name: "Coinbase", description: "Senior PM, Payments - Payments infrastructure, $100B+ annual volume (2019–2021)" },
+    { "@type": "Organization", name: "Paxos", description: "Product Lead, Stablecoins - Built and launched PayPal USD, $3B+ market cap (2022–2024)" },
   ],
 };
 

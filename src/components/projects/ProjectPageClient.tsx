@@ -90,6 +90,15 @@ export function ProjectPageClient({ project }: ProjectPageClientProps) {
               GitHub
             </a>
           )}
+          {project.links.blog && (
+            <Link
+              href={project.links.blog}
+              className="inline-flex items-center gap-2 rounded-lg border border-border px-5 py-2.5 text-sm text-text-secondary hover:text-text-primary hover:border-border-hover transition-all"
+            >
+              Read the write-up
+              <ArrowUpRight size={14} />
+            </Link>
+          )}
         </div>
       </motion.div>
 

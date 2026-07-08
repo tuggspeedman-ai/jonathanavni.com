@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Mail } from "lucide-react";
 import { AnimatedText } from "@/components/ui/AnimatedText";
+import { SITE } from "@/lib/constants";
 
 export function Hero() {
   return (
@@ -62,14 +63,14 @@ export function Hero() {
               }}
               className="text-lg md:text-xl text-text-secondary leading-relaxed max-w-2xl mb-12"
             >
-              10+ years building developer platforms and payments infrastructure
-              at Yahoo, Pinterest, Coinbase, and Paxos. Now going deep on AI.
-              Training models, building products, and writing about it.
+              13+ years shipping developer APIs and payments infrastructure at
+              Coinbase, Paxos, Pinterest, and Yahoo. Now building at the
+              intersection of payments and AI agents: training models, shipping
+              products, and writing about what I learn.
             </motion.p>
 
-            {/* CTA */}
-            <motion.a
-              href="#projects"
+            {/* CTAs */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -77,14 +78,26 @@ export function Hero() {
                 delay: 1.3,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="inline-flex items-center gap-2 text-text-secondary hover:text-accent transition-colors group"
+              className="flex items-center gap-8"
             >
-              <span className="text-sm tracking-wide">See what I&apos;m building</span>
-              <ArrowDown
-                size={16}
-                className="group-hover:translate-y-1 transition-transform"
-              />
-            </motion.a>
+              <a
+                href="#projects"
+                className="inline-flex items-center gap-2 text-text-secondary hover:text-accent transition-colors group"
+              >
+                <span className="text-sm tracking-wide">See what I&apos;m building</span>
+                <ArrowDown
+                  size={16}
+                  className="group-hover:translate-y-1 transition-transform"
+                />
+              </a>
+              <a
+                href={`mailto:${SITE.email}`}
+                className="inline-flex items-center gap-2 text-text-secondary hover:text-accent transition-colors group"
+              >
+                <span className="text-sm tracking-wide">Get in touch</span>
+                <Mail size={16} />
+              </a>
+            </motion.div>
           </div>
 
           {/* Profile illustration */}

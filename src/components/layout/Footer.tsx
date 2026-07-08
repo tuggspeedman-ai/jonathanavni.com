@@ -50,7 +50,16 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-border text-center">
+        <div className="mt-8 pt-6 border-t border-border text-center space-y-3">
+          <p className="text-sm text-text-secondary">
+            If you&apos;re building in this space, I&apos;d love to connect:{" "}
+            <a
+              href={`mailto:${SITE.email}`}
+              className="text-accent hover:underline"
+            >
+              {SITE.email}
+            </a>
+          </p>
           <p className="text-xs text-text-tertiary">
             &copy; {new Date().getFullYear()} {SITE.name}
           </p>

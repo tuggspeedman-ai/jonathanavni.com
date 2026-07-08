@@ -49,7 +49,7 @@ export function Talk2DocsDetail() {
           Seven-Stage RAG Pipeline
         </h2>
         <p className="text-text-secondary mb-8 max-w-3xl">
-          Built every layer of the retrieval pipeline from scratch — no
+          Built every layer of the retrieval pipeline from scratch. No
           LangChain, no LlamaIndex. Full control over quality with independent
           tuning per stage.
         </p>
