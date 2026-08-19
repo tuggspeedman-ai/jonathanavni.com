@@ -2,6 +2,43 @@ import { Project } from "@/types";
 
 export const projects: Project[] = [
   {
+    slug: "sigildex",
+    name: "Sigildex",
+    tagline:
+      "Approval records for AI agent skills: lock what a human approved, detect when the installed copy drifts, diff what changed",
+    description:
+      "Started as a hosted, agent-first trust layer for agent skills: a REST API and MCP server that let an agent discover, inspect and verify skills, with x402 micropayments on Base and a three-layer safety-scoring pipeline over a ~200K-row corpus. After a summer spent rebuilding the index, I wound the hosted service down and shipped the piece that stands on its own: a small open-source CLI (lock, check, diff) that records the exact bytes of a skill a human approved and tells you, file by file, when the installed copy drifts. Local, deterministic, no network. Ships with an Agent Skill, llms.txt, a CI example and a postmortem.",
+    status: "live",
+    stats: [
+      { label: "Commands", value: "3" },
+      { label: "Tests", value: "324" },
+      { label: "Skills Indexed", value: "~200K" },
+      { label: "Safety Scoring", value: "~94K skills" },
+    ],
+    techStack: [
+      "TypeScript",
+      "Node.js",
+      "Supabase / pgvector",
+      "OpenAI embeddings",
+      "x402 (USDC on Base)",
+      "MCP",
+      "Vercel",
+      "GitHub Actions",
+    ],
+    links: {
+      github: "https://github.com/sigildex/sigildex",
+      live: "https://sigildex.ai",
+      blog: "/blog/lessons-from-launching-sigildex",
+    },
+    screenshots: [
+      "/images/projects/sigildex/hero.png",
+      "/images/projects/sigildex/lock-check-diff.png",
+      "/images/projects/sigildex/workflow.png",
+    ],
+    featured: true,
+    order: 0,
+  },
+  {
     slug: "llm-fine-tuning-course",
     name: "LLM Fine-tuning Course",
     tagline:
@@ -35,7 +72,7 @@ export const projects: Project[] = [
       "/images/projects/llm-fine-tuning-course/code-snippet.png",
     ],
     featured: true,
-    order: 0,
+    order: 1,
   },
   {
     slug: "deep-research-agent",
@@ -71,7 +108,7 @@ export const projects: Project[] = [
       "/images/projects/deep-research-agent/research_results.png",
     ],
     featured: true,
-    order: 1,
+    order: 2,
   },
   {
     slug: "tinychat",
@@ -103,7 +140,7 @@ export const projects: Project[] = [
       "/images/projects/tinychat/tinychat-wandb.png",
     ],
     featured: true,
-    order: 4,
+    order: 5,
   },
   {
     slug: "kuchiclaw",
@@ -133,7 +170,7 @@ export const projects: Project[] = [
     },
     screenshots: ["/images/projects/kuchiclaw/kuchiclaw-screenshot.png"],
     featured: true,
-    order: 2,
+    order: 3,
   },
   {
     slug: "tinybrain",
@@ -167,7 +204,7 @@ export const projects: Project[] = [
       "/images/projects/tinybrain/tinybrain-screenshot-4.png",
     ],
     featured: true,
-    order: 3,
+    order: 4,
   },
   {
     slug: "talk2docs",
@@ -205,7 +242,7 @@ export const projects: Project[] = [
       "/images/projects/talk2docs/talk2docs-7.png",
     ],
     featured: true,
-    order: 6,
+    order: 7,
   },
   {
     slug: "pagepiper",
@@ -234,7 +271,7 @@ export const projects: Project[] = [
       "/images/projects/pagepiper/screenshot-3-store.png",
     ],
     featured: false,
-    order: 5,
+    order: 6,
   },
 ];
 

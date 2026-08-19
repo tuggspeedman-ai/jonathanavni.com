@@ -1,0 +1,32 @@
+---
+title: "Lessons From Launching Sigildex: What I Learned Building for AI Agents"
+date: "2026-08-19"
+excerpt: "I set out to build a hosted trust layer for agent skills and ended up shipping a small open-source CLI. The postmortem has the full story. This is the short list of what I'd carry into any product whose user is an AI agent."
+tags: ["AI", "Agents", "Agent Skills", "Open Source", "x402", "Agentic Coding"]
+---
+
+This spring I started a side project called [Sigildex](https://sigildex.ai). The original idea was a hosted "trust preflight" for agent skills: an AI agent calls an API to find a skill, inspect it before installing, and verify the installed copy by content hash. No UI, no accounts. The wallet is the identity and every call settles over x402. I wanted three things out of it: a product that was genuinely useful for agents, serious hands-on time building with frontier coding agents and harnesses, and a real experiment with agentic payments.
+
+Last week I shipped it as a small open-source CLI and shut the hosted service down. Three commands: `sigildex lock` records the exact bytes of a skill a human approved, `sigildex check` verifies the installed copy and exits 2 on drift, `sigildex diff` shows what changed before you re-approve. Local, no network, MIT. It's on [npm](https://www.npmjs.com/package/sigildex) and [GitHub](https://github.com/sigildex/sigildex).
+
+How I got from one to the other, with the numbers, is in the [postmortem](https://github.com/sigildex/sigildex/blob/main/docs/postmortem.md): the ClawHub detour, the summer spent rebuilding an index that wouldn't finish, and the ecosystem filling in around me. This post is the short list of what I'd carry into anything whose user is an agent.
+
+## An MCP tool result is prompt input
+
+Author-supplied names and descriptions land straight in a model's context. A skill description containing a newline could forge a verdict line above the real one. So the safety verdict went out as the first line of every result, before anything author-controlled, and untrusted content was fenced and labeled as such. That reduces risk. It isn't a security boundary, and the docs say so.
+
+## Publish contracts that break the build when they drift
+
+An agent can't ask a colleague what the doc meant. The `llms.txt`, the OpenAPI spec, the MCP descriptor and the skill that wrapped the client were all generated from one source, and a linter failed CI when the published limits or version stopped matching the code. Retriability was published data on every error, not something the agent had to infer from a status code.
+
+## Test with the actual users
+
+When the user is a program, user research is cheap. A handful of times I pointed fresh agents, on different models, at the entry file with no other context, watched what they did, and asked what was missing. Every run produced a short list of things a human reader glides past: an install line in the wrong place, a flag rule stated once where it needed to be twice, an exit-code table in the wrong order. I fixed most of them the same day. Cheapest usability testing I've done, and the part I'd repeat first.
+
+## What I got out of it
+
+The product ended up smaller than the pitch, but it shipped. The hands-on goal paid off more than I expected: most of Sigildex was built with two frontier coding agents, one holding continuity and one attacking the work, and it's where that workflow got refined. I wrote up the June version in [Two Models Today, Meta-Harnesses Tomorrow](/blog/two-models-today-meta-harnesses-tomorrow) and have kept iterating since.
+
+The payments experiment I only got to start. x402 worked end to end: an agent discovered skills through the API, paid per call in USDC, and every payment settled on-chain. What I didn't get to is the interesting part, what a headless merchant looks like once a second rail sits next to x402. The index ate the time. That's where the next project picks up.
+
+If you're building trust tooling for agents, or you've walked a similar arc, I'd love to hear from you.
