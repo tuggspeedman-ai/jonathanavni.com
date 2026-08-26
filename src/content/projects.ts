@@ -148,12 +148,12 @@ export const projects: Project[] = [
     tagline:
       "A minimal AI agent framework: ephemeral containers, living file memory, filesystem IPC",
     description:
-      "A personal AI agent that runs 24/7 on a VPS, talks through Telegram, manages its own memory, sends emails, and runs scheduled tasks autonomously. Built on the Claude Agent SDK with ephemeral Docker containers, living markdown files for memory, filesystem IPC, and a two-tier skills system (shell scripts + MCP).",
+      "A personal AI agent that runs 24/7 on a VPS, talks through Telegram, manages its own memory in living markdown files, runs scheduled tasks (morning briefs, self-maintenance heartbeats), and reaches email and a shared Google Calendar through a simple skills system. Built on the Claude Agent SDK with ephemeral Docker containers as the security boundary, then hardened for unattended operation: HMAC-signed container output, fail-closed startup, crash recovery with a crash-loop circuit breaker, per-group isolation, and daily git backups of the agent's evolved memory.",
     status: "live",
     stats: [
-      { label: "Lines of Code", value: "~2,000" },
-      { label: "Source Files", value: "15" },
-      { label: "Languages", value: "TypeScript" },
+      { label: "Lines of Code", value: "~5,000" },
+      { label: "Tests", value: "422" },
+      { label: "Runtime Deps", value: "4" },
       { label: "Runtime", value: "Docker" },
     ],
     techStack: [
